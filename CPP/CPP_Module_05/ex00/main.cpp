@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:09 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/15 14:52:51 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/16 14:31:58 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	main(void)
 {
-	Bureaucrat	meti;
+	Bureaucrat	time("hello", 15);
+	Bureaucrat	meti(time);
 	std::cout << meti.getName() << std::endl;
+	std::cout << meti.getGrade() << std::endl;
 }

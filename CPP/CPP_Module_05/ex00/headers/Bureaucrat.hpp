@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:21 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/15 14:40:34 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/16 14:54:48 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ public:
 // Constructor Destructor //
 	Bureaucrat();
 	Bureaucrat(const Bureaucrat &cpy);
+	Bureaucrat(const std::string name);
 	Bureaucrat(const int grade);
+	Bureaucrat(const std::string name, const int grade);
 	~Bureaucrat();
 
 // operator //
@@ -39,6 +41,8 @@ public:
 // functions //
 	void GradeTooHighException();
 	void GradeTooLowException();
+	void increment();
+	void decrement();
 
 private:
 	const std::string _name;
