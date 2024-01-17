@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/16 14:56:45 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/17 14:44:17 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,40 @@
 
 Bureaucrat::Bureaucrat(void) : _name("default") , _grade(150)
 {
-	std::cout << "Bureaucrat Constructor called." << std::endl;
+	std::cout << "\x1b[33mBureaucrat Constructor called.\033[0m" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy) : _name(copy._name) , _grade(copy._grade)
 {
-	std::cout << "Copy Bureaucrat Constructor called." << std::endl;
+	std::cout << "\x1b[33mCopy Bureaucrat Constructor called.\033[0m" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const int grade) : _name("default") , _grade(grade)
 {
-	
-	std::cout << "Bureaucrat Parametric Constructor called." << std::endl;
+	if (grade > 150)
+		throw GradeTooLowException();
+	else if  (grade < 1)
+		throw GradeTooHighException();
+	std::cout << "\x1b[33mBureaucrat Parametric Constructor called.\033[0m" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name) : _name(name) , _grade(150)
 {
-	std::cout << "Bureaucrat Parametric Constructor called." << std::endl;
+	std::cout << "\x1b[33mBureaucrat Parametric Constructor called.\033[0m" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name) , _grade(grade)
 {
-	std::cout << "Bureaucrat Parametric Constructor called." << std::endl;
+	if (grade > 150)
+		throw GradeTooLowException();
+	else if  (grade < 1)
+		throw GradeTooHighException();
+	std::cout << "\x1b[33mBureaucrat Parametric Constructor called.\033[0m" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat Destructor called." << std::endl;
+	std::cout << "\x1b[33mBureaucrat Destructor called.\033[0m" << std::endl;
 }
 
 
@@ -50,6 +57,10 @@ Bureaucrat::~Bureaucrat()
 
 void	Bureaucrat::setGrade(int grade)
 {
+	if (grade > 150)
+		throw GradeTooLowException();
+	else if  (grade < 1)
+		throw GradeTooHighException();
 	this->_grade = grade;
 }
 
@@ -66,29 +77,35 @@ int	Bureaucrat::getGrade(void) const
 
 /* Functions */
 
-void Bureaucrat::GradeTooHighException(void)
+std::string Bureaucrat::GradeTooHighException(void)
 {
-	std::cout << "Grade too high" << std::endl;
+	return("\x1b[31mGrade too high.\033[0m");
 }
 
-void Bureaucrat::GradeTooLowException(void)
+std::string Bureaucrat::GradeTooLowException(void)
 {
-	std::cout << "Grade too low" << std::endl;
+	return("\x1b[31mGrade too low.\033[0m");
 }
 
 void Bureaucrat::increment(void)
 {
-	try
-	{
-		this->_grade--;
-	}
-	catch()
-	{
-		GradeTooHighException();
-	}
+	this->_grade--;
+	if (this->_grade < 1)
+		throw GradeTooHighException();
 }
 
 void Bureaucrat::decrement(void)
 {
 	this->_grade++;
+	if (this->_grade > 150)
+		throw GradeTooLowException();
+}
+
+
+/* Overload Operator */
+
+std::ostream& operator<<(std::ostream &out, const Bureaucrat& B)
+{
+	std::cout << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << "\033[0m";
+	return (out);
 }

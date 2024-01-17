@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:21 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/16 14:54:48 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/17 14:45:18 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,18 @@ public:
 	int getGrade(void) const;
 
 // functions //
-	void GradeTooHighException();
-	void GradeTooLowException();
+	std::string GradeTooHighException();
+	std::string GradeTooLowException();
 	void increment();
 	void decrement();
+
 
 private:
 	const std::string _name;
 	int	_grade;
 };
+
+std::ostream& operator<<(std::ostream &out, const Bureaucrat& B);
 
 #endif
 
