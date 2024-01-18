@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:09 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/17 14:47:41 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/18 12:07:11 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(void)
 
 	try 
 	{
-		std::cout << "try to create an \x1b[32mGrade 0 Boy\033[0m..." << std::endl;
+		std::cout << "try to create a \x1b[32mGrade 0 Boy\033[0m..." << std::endl;
 		Bureaucrat	B4("Grade0Boy", 0);
 	}
 	catch (const std::string txtException){
