@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:09 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 12:07:11 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/18 13:25:33 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ int	main(void)
 	catch (const std::string txtException){
 		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
 	}
+	return (0);
 }

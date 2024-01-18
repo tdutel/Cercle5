@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 12:12:07 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/18 13:22:42 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "\x1b[33mBureaucrat Destructor called.\033[0m" << std::endl;
 }
 
+// operator //
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+{
+	this->_grade = other._grade;
+	return (*this);
+}
 
 /* get set */
 
@@ -101,11 +108,10 @@ void Bureaucrat::decrement(void)
 		throw GradeTooLowException();
 }
 
-
 /* Overload Operator */
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& B)
 {
-	std::cout << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << ".\033[0m";
+	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << ".\033[0m";
 	return (out);
 }
