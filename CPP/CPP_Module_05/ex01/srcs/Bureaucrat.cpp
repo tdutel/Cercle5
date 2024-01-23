@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 13:23:55 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:49:58 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,15 +108,23 @@ void Bureaucrat::decrement(void)
 		throw GradeTooLowException();
 }
 
-void Bureaucrat::signForm(const Form F)
+void Bureaucrat::signForm(Form *F)
 {
-	std::cout << getName() << " signed " << F.getName() << std::endl;
+	if (getGrade() > F->getGradeSign())
+		std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't sign \x1b[32m" << F->getName() << "\033[0m because " << GradeTooLowException() << std::endl;
+	else if (F->getSigned() == false)
+	{
+		F->setSigned(true);
+		std::cout <<"\x1b[32m" << getName() << "\033[0m signed \x1b[32m" << F->getName() << "\033[0m" << std::endl;
+	}
+	else
+	std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't sign \x1b[32m" << F->getName() << "\033[0m because \x1b[31mit's already signed.\033[0m" << std::endl;
 }
 
 /* Overload Operator */
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& B)
 {
-	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << ".\033[0m";
+	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << ".\033[0m" << std::endl;
 	return (out);
 }

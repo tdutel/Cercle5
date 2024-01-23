@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:09 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 15:35:30 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/23 15:11:41 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,43 @@
 
 int	main(void)
 {
-	std::cout<< "\x1b[35mTEST 1\033[0m" << std::endl << std::endl;
+	std::cout<< "\x1b[35mTEST 1 : signForm() usage\033[0m" << std::endl << std::endl;
 	try 
 	{
-		Form F1;
-		std::cout << F1 << std::endl;
-/*		Bureaucrat	B1("LowBoy");
-		Bureaucrat	B2(B1);
+		Bureaucrat	B1("LowBoy", 140);
+		Bureaucrat	B2("HighBoy", 1);
+		Form F1("law 1", 1, 1);
 		std::cout << std::endl;
-		std::cout << (B2) << std::endl;
 
-		std::cout << std::endl << "increment \x1b[32mLowBoy\033[0m copy..." << std::endl << std::endl;
-		B2.increment();
-		std::cout << (B2) << std::endl;
+		std::cout << B1 << std::endl;
+		std::cout << B2 << std::endl;
+		std::cout << F1 << std::endl;
 
-		std::cout << std::endl << "decrement \x1b[32mLowBoy\033[0m copy..." << std::endl << std::endl;
-		B2.decrement();
-		std::cout << (B2) << std::endl;
-
-		std::cout << std::endl << "decrement \x1b[32mLowBoy\033[0m copy again..." << std::endl << std::endl;
-		B2.decrement();
-		std::cout << (B2) << std::endl;
-*/	}
+		B1.signForm(&F1);
+		B2.signForm(&F1);
+		B2.signForm(&F1);
+	}
 	catch (const std::string txtException){
 		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
 	}
 
-/*
-	std::cout<< std::endl << std::endl << std::endl << "\x1b[35mTEST 2\033[0m"<< std::endl << std::endl;
-
+	std::cout<< std::endl << std::endl << std::endl << "\x1b[35mTEST 2 : beSigned() usage\033[0m"<< std::endl << std::endl;
 
 	try 
 	{
-		Bureaucrat	B3("HighBoy");
-		std::cout << std::endl << (B3) << std::endl;
-		std::cout << std::endl << "set \x1B[34mgrade\033[0m to \x1B[34m1\033[0m..." << std::endl;
-		B3.setGrade(1);
-		std::cout << std::endl << (B3) << std::endl;
+		Bureaucrat	B1("LowBoy", 150);
+		Bureaucrat	B2("HighBoy", 140);
+		Form F1("law 140", 140, 140);
+		std::cout << std::endl;
 
-		std::cout << std::endl << "increment \x1b[32mHighBoy\033[0m..." << std::endl << std::endl;
-		B3.increment();
-		std::cout << (B3) << std::endl;
+		std::cout << B1 << std::endl;
+		std::cout << B2 << std::endl;
+		std::cout << F1 << std::endl;
+
+		std::cout << std::endl << "try to sign \x1b[32m" << F1.getName() << "\033[0m with \x1b[32m" << B2.getName() << "\033[0m..." << std::endl << std::endl;
+		F1.beSigned(B2);
+		std::cout << std::endl << "try to sign \x1b[32m" << F1.getName() << "\033[0m with \x1b[32m" << B1.getName() << "\033[0m..." << std::endl << std::endl;
+		F1.beSigned(B1);
 	}
 	catch (const std::string txtException){
 		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
@@ -67,12 +63,12 @@ int	main(void)
 
 	try 
 	{
-		std::cout << "try to create a \x1b[32mGrade 0 Boy\033[0m..." << std::endl;
-		Bureaucrat	B4("Grade0Boy", 0);
+		std::cout << "try to create a \x1b[32mGrade 0 Form\033[0m..." << std::endl;
+		Form	F("Grade0Form", 0, 0);
 	}
 	catch (const std::string txtException){
 		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
 	}
-*/
+
 	return (0);
 }

@@ -6,11 +6,12 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:15:34 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 15:30:26 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:51:30 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../headers/Form.hpp"
+#include <iomanip>
 
 /* Constructor Destructor */
 
@@ -24,7 +25,7 @@ Form::Form(const Form &copy) : _name(copy._name), _signed(copy._signed), _gradeS
 	std::cout << "\x1b[33mCopy Form Constructor called.\033[0m" << std::endl;
 }
 
-Form::Form(const std::string name) : _signed(false), _gradeSign(150), _gradeExec(150)
+Form::Form(const std::string name) : _name(name), _signed(false), _gradeSign(150), _gradeExec(150)
 {
 	std::cout << "\x1b[33mForm Parametric Constructor called.\033[0m" << std::endl;
 }
@@ -50,6 +51,14 @@ Form& Form::operator=(const Form& other)
 	this->_signed = other._signed;
 	return (*this);
 }
+
+// set //
+
+void	Form::setSigned(bool sign)
+{
+	this->_signed = sign;
+}
+
 
 // get //
 
@@ -89,14 +98,7 @@ void	Form::beSigned(Bureaucrat B)
 {
 	if (B.getGrade() > getGradeSign())
 		throw(GradeTooLowException());
-	if (this->_signed == false)
-	{
-		this->_signed = true;
-		B.signForm(*this);
-	}
-	else
-		std::cout << "Form is already signed." << std::endl;
-	
+	B.signForm(this);
 }
 
 
@@ -104,11 +106,11 @@ void	Form::beSigned(Bureaucrat B)
 
 std::ostream& operator<<(std::ostream &out, const Form& F)
 {
-	out << "+-----------------------------------+" << std::endl;
-	out << "Form \x1b[32m" << F.getName() << "\033[0m," << std::endl;
-	out << "signed : " << F.getSigned() << std::endl;
-	out << "grade required to sign it : \x1B[34m" << F.getGradeSign() << "\033[0m." << std::endl;
-	out << "grade required to execute it : \x1B[34m" << F.getGradeExec() << "\033[0m." << std::endl;
-	out << "+-----------------------------------+" << std::endl;
+	out << "+---------------------------------------+" << std::endl;
+	out << "| Form : \x1b[32m" << F.getName() << "  \033[0m			|" << std::endl;
+	out << "| Signed : " << F.getSigned() << "				|"<< std::endl;
+	out << "| Grade required to sign it : \x1B[34m" << F.getGradeSign() << " \033[0m	|" << std::endl;
+	out << "| Grade required to execute it : \x1B[34m" << F.getGradeExec() << "\033[0m	|" << std::endl;
+	out << "+---------------------------------------+" << std::endl;
 	return (out);
 }

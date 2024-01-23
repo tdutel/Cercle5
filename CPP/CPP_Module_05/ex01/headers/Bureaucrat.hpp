@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:21 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 13:34:51 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:12:57 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ public:
 	std::string	GradeTooLowException();
 	void		increment();
 	void		decrement();
-	void		signForm(const Form F);
+	void		signForm(Form *F);
 
 
 private:
