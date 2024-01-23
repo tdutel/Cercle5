@@ -6,13 +6,13 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:26:31 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 15:47:30 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/23 15:57:39 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : 
+ShrubberyCreationForm::ShrubberyCreationForm() //: _name("default"), _gradeSign(145), _gradeExec(137)
 {
 	
 }
