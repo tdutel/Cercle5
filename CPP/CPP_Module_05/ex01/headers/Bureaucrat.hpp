@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:21 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 15:36:28 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:34:51 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <stdbool.h>
 # include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -54,6 +56,7 @@ private:
 };
 
 std::ostream&	operator<<(std::ostream &out, const Bureaucrat& B);
+
 
 #endif
 

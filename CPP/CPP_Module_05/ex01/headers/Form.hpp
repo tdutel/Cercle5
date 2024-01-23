@@ -6,14 +6,18 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:15:18 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 15:36:32 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:34:55 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
 
+# include <iostream>
+# include <stdbool.h>
 # include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
