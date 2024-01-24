@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:09 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 15:58:21 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 16:03:43 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	
 	try 
 	{
-		AForm *F1 = new ShrubberyCreationForm("file");
+		AForm *F1 = new ShrubberyCreationForm("Target");
 		std::cout << std::endl;
 		std::cout << *F1 << std::endl;
 		std::cout << "create 2 bureaucrats : \x1b[32mExecutor\033[0m and \x1b[32mLowboy\033[0m..." << std::endl << std::endl;
@@ -82,7 +82,7 @@ int	main(void)
 
 	try 
 	{
-		AForm *F1 = new PresidentialPardonForm("target");
+		AForm *F1 = new PresidentialPardonForm("Target");
 		std::cout << std::endl;
 		std::cout << *F1 << std::endl;
 		std::cout << "create 2 bureaucrats : \x1b[32mExecutor\033[0m and \x1b[32mlowboy\033[0m..." << std::endl << std::endl;
