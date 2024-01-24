@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:26:31 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 14:53:43 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:59:01 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,6 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 
 	}
 }
-
-
-
-
-
-
-
 
 // /* Overload Operator */
 

@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 14:49:55 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:58:32 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,6 @@ void Bureaucrat::signForm(AForm *F)
 	std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't sign \x1b[32m" << F->getName() << "\033[0m because \x1b[31mit's already signed.\033[0m" << std::endl;
 }
 
-
-
-
-
-
 void Bureaucrat::executeForm(AForm const &form)
 {
 	if (getGrade() > form.getGradeExec())
@@ -137,10 +132,6 @@ void Bureaucrat::executeForm(AForm const &form)
 		form.execute(*this);
 	}
 }
-
-
-
-
 
 /* Overload Operator */
 
