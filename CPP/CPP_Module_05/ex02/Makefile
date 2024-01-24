@@ -6,15 +6,15 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/01/24 14:56:22 by tdutel           ###   ########.fr        #
+#    Updated: 2024/01/24 15:28:50 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = AForm
-HEADER = headers/Bureaucrat.hpp headers/AForm.hpp	headers/ShrubberyCreationForm.hpp
+HEADER = headers/Bureaucrat.hpp headers/AForm.hpp	headers/ShrubberyCreationForm.hpp	headers/RobotomyRequestForm.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-SRC =	main.cpp srcs/Bureaucrat.cpp srcs/AForm.cpp srcs/ShrubberyCreationForm.cpp
+SRC =	main.cpp srcs/Bureaucrat.cpp srcs/AForm.cpp srcs/ShrubberyCreationForm.cpp	srcs/RobotomyRequestForm.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -30,7 +30,7 @@ $(NAME) : $(OBJ)
 
 clean :
 	rm -f $(OBJ)
-	rm *_shrubbery
+	rm -f *_shrubbery
 
 fclean : 
 	$(MAKE) clean

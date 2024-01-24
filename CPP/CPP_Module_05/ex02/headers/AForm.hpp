@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:20:01 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 13:03:24 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 15:17:22 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <fstream>
 # include <stdbool.h>
+# include <ctime>
+
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
