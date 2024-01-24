@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:26:31 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 14:59:01 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 15:54:13 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		std::ofstream outfile (s1);
 		outfile << "      ,`\"\"\',\n      ;^__^;\n      ;\' ` ;\t\t\t HAPPY CACTUS\n ,,,  ;`,\',;\n;,` ; ;\' ` ;   ,',\n;`,'; ;`,',;  ;,' ;\n;',`; ;` ' ; ;`'`';\n;` '',''` `,',`',;\n `''`'; ', ;`'`'\n      ;' `';\n      ;` ' ;\n      ;' `';\n      ;` ' ;\n      ; ',';\n      ;,' ';\n    \\|/|\\/|\\|/\n     \\\\|/\\|//" << std::endl;
 		outfile.close();
-		std::cout << "\x1b[32m" << executor.getName() << "\033[0m execute \x1b[32m" << this->getName() << "\033[0m" << std::endl;
 
 	}
 }

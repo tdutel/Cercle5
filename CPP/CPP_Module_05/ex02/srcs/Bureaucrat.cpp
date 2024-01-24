@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 14:58:32 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 15:57:03 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void Bureaucrat::signForm(AForm *F)
 	else if (F->getSigned() == false)
 	{
 		F->setSigned(true);
-		std::cout <<"\x1b[32m" << getName() << "\033[0m signed \x1b[32m" << F->getName() << "\033[0m" << std::endl;
+		std::cout <<"\x1b[32m" << getName() << "\033[0m signed \x1b[32m" << F->getName() << "\033[0m." << std::endl;
 	}
 	else
 	std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't sign \x1b[32m" << F->getName() << "\033[0m because \x1b[31mit's already signed.\033[0m" << std::endl;
@@ -129,6 +129,7 @@ void Bureaucrat::executeForm(AForm const &form)
 		std::cout << "\x1b[32m" << form.getName() << "\033[0m couldn't execute \x1b[32m" << getName() << "\033[0m because it's not signed." << std::endl;
 	else
 	{
+		std::cout << "\x1b[32m" << getName() << "\033[0m execute \x1b[32m" << form.getName() << "\033[0m." << std::endl;
 		form.execute(*this);
 	}
 }
@@ -137,6 +138,6 @@ void Bureaucrat::executeForm(AForm const &form)
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& B)
 {
-	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << ".\033[0m" << std::endl;
+	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << "\033[0m." << std::endl;
 	return (out);
 }
