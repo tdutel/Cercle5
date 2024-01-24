@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:20:01 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 15:48:42 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 13:03:24 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AFORM_HPP
 
 # include <iostream>
+# include <fstream>
 # include <stdbool.h>
 # include "Bureaucrat.hpp"
 
@@ -45,9 +46,10 @@ public:
 	bool		getSigned(void) const;
 
 // functions //
-	std::string	GradeTooHighException();
-	std::string	GradeTooLowException();
-	void		beSigned(Bureaucrat B);	//virtual ?
+	std::string		GradeTooHighException();
+	std::string		GradeTooLowException();
+	void			beSigned(Bureaucrat B);
+	virtual void	execute(Bureaucrat const & executor) const = 0;
 
 
 protected:

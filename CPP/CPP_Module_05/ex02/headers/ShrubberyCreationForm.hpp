@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:26:15 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 16:04:51 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:38:52 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,36 @@ public:
 // Constructor Destructor //
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(const ShrubberyCreationForm &cpy);
-	ShrubberyCreationForm(const std::string name);
+	ShrubberyCreationForm(const std::string target);
 	~ShrubberyCreationForm();
 
 // operator //
 	ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &other);
 
+// get //
+     std::string    getTarget();
+
+// function // 
+     void      execute(Bureaucrat const & executor) const;
+
 private:
 
-	std::string target;
+	std::string _target;
 };
+
+// std::ostream&	operator<<(std::ostream &out, const ShrubberyCreationForm& B);
 
 #endif
 /*
 
 
-      ,`""',
-      ;' ` ;
-      ;`,',;
-      ;' ` ;
- ,,,  ;`,',;
-;,` ; ;' ` ;   ,',
-;`,'; ;`,',;  ;,' ;
+      \,`\"\"\',
+      ;\' \` ;
+      ;^__^;
+      ;\' ` ;
+ ,,,  ;\`,\',;
+;\,` ; ;\' ` ;   ,',
+;\`,'; ;`,',;  ;,' ;
 ;',`; ;` ' ; ;`'`';
 ;` '',''` `,',`',;
  `''`'; ', ;`'`'
@@ -62,7 +70,7 @@ private:
         .      .         ###            .      .      .
       .      .   "#:. .:##"##:. .:#"  .      .
           .      . "####"###"####"  .
-       .     "#:.    .:#"###"#:.    .:#"  .        .       .
+       .     "#:.    .:#"^O^"#:.    .:#"  .        .       .
   .             "#########"#########"        .        .
         .    "#:.  "####"###"####"  .:#"   .       .
      .     .  "#######""##"##""#######"                  .

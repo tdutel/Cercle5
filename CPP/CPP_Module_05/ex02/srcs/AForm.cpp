@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:15:34 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 15:51:34 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:37:46 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,22 @@ void	AForm::beSigned(Bureaucrat B)
 	B.signForm(this);
 }
 
+void	AForm::execute(Bureaucrat const & executor) const
+{
+}
 
 /* Overload Operator */
 
 std::ostream& operator<<(std::ostream &out, const AForm& F)
 {
 	out << "+---------------------------------------+" << std::endl;
-	out << "| Form : \x1b[32m" << F.getName() << "  \033[0m			|" << std::endl;
+	out << "|                 Form                  |"<< std::endl;
+	out << "+---------------------------------------+" << std::endl;
+	out << "| Form : \x1b[32m" << F.getName() << "  \033[0m	|" << std::endl;
 	out << "| Signed : " << F.getSigned() << "				|"<< std::endl;
 	out << "| Grade required to sign it : \x1B[34m" << F.getGradeSign() << " \033[0m	|" << std::endl;
 	out << "| Grade required to execute it : \x1B[34m" << F.getGradeExec() << "\033[0m	|" << std::endl;
 	out << "+---------------------------------------+" << std::endl;
 	return (out);
 }
+

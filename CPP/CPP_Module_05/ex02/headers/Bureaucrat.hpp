@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:21 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 15:48:26 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:03:56 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ public:
 	void		increment();
 	void		decrement();
 	void		signForm(AForm *F);
-
+	void		executeForm(AForm const & form);
 
 private:
 	const std::string	_name;

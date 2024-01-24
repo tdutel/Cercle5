@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 15:52:26 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:49:55 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ int	Bureaucrat::getGrade(void) const
 
 std::string Bureaucrat::GradeTooHighException(void)
 {
-	return("\x1b[31mGrade too high.\033[0m");
+	return("\x1b[31mGrade is too high.\033[0m");
 }
 
 std::string Bureaucrat::GradeTooLowException(void)
 {
-	return("\x1b[31mGrade too low.\033[0m");
+	return("\x1b[31mGrade is too low.\033[0m");
 }
 
 void Bureaucrat::increment(void)
@@ -120,6 +120,27 @@ void Bureaucrat::signForm(AForm *F)
 	else
 	std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't sign \x1b[32m" << F->getName() << "\033[0m because \x1b[31mit's already signed.\033[0m" << std::endl;
 }
+
+
+
+
+
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+	if (getGrade() > form.getGradeExec())
+		std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't execute \x1b[32m" << form.getName() << "\033[0m because " << GradeTooLowException() << std::endl;
+	else if (form.getSigned() == false)
+		std::cout << "\x1b[32m" << form.getName() << "\033[0m couldn't execute \x1b[32m" << getName() << "\033[0m because it's not signed." << std::endl;
+	else
+	{
+		form.execute(*this);
+	}
+}
+
+
+
+
 
 /* Overload Operator */
 
