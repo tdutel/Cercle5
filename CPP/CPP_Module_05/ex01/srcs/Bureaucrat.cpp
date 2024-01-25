@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 14:49:58 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:54:30 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ void Bureaucrat::signForm(Form *F)
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& B)
 {
-	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << ".\033[0m" << std::endl;
+	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << "\033[0m." << std::endl;
 	return (out);
 }

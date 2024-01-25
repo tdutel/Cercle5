@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:15:34 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/23 15:49:47 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:55:49 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	Form::beSigned(Bureaucrat B)
 
 std::ostream& operator<<(std::ostream &out, const Form& F)
 {
+	out << "+---------------------------------------+" << std::endl;
+	out << "|                 Form                  |"<< std::endl;
 	out << "+---------------------------------------+" << std::endl;
 	out << "| Form : \x1b[32m" << F.getName() << "  \033[0m			|" << std::endl;
 	out << "| Signed : " << F.getSigned() << "				|"<< std::endl;
