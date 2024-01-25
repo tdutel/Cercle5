@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:47:22 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/25 13:40:09 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:30:17 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ public:
 private:
 
 };
+
+std::ostream&	operator<<(std::ostream &out, const Bureaucrat& B);
 
 #endif

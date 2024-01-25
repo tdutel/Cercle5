@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:47:36 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/25 13:44:02 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:44:09 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,28 @@ Intern& Intern::operator=(const Intern &other)
 // function //
 AForm* Intern::makeForm(std::string name, std::string target)
 {
-	if (name == "presidential pardon" || name == "robotomy request" || name == "shrubbery creation")
-		std::cout << "Intern creates \x1b[32m" << name << "\033[0m." << std::endl << std::endl;
-	if (name == "shrubbery creation")
+	std::string s[] = {"shrubbery creation", "robotomy request" , "presidential pardon"};
+	for (size_t i = 0; i < 3; i++)
 	{
-		AForm *F = new ShrubberyCreationForm(target);
-		return (F);
-	}
-	if (name == "robotomy request")
-	{
-		AForm *F = new RobotomyRequestForm(target);
-		return (F);
-	}
-	if (name == "presidential pardon")
-	{
-		AForm *F = new PresidentialPardonForm(target);
-		return (F);
+		if (s[i] == name)
+		{
+			std::cout << "Intern creates \x1b[32m" << name << "\033[0m form." << std::endl << std::endl;
+			AForm *F;
+			switch (i)
+			{
+			case 0:
+				F = new ShrubberyCreationForm(target);
+				return (F);
+			case 1:
+				F = new RobotomyRequestForm(target);
+				return (F);
+			case 2:
+				F = new PresidentialPardonForm(target);
+				return (F);
+			default:
+				break;
+			}
+		}
 	}
 	throw unknownForm(name);
 	return (NULL);
@@ -65,4 +71,12 @@ std::string	Intern::unknownForm(std::string name)
 	s.append(name);
 	s.append("\033[0m\" doesn't exist.\n");
 	return(s);
+}
+
+
+/* Overload Operator */
+std::ostream& operator<<(std::ostream &out, const Intern& B)
+{
+	std::cout << "Intern" << std::endl;
+	return (out);
 }
