@@ -6,15 +6,15 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/01/24 16:08:13 by tdutel           ###   ########.fr        #
+#    Updated: 2024/01/25 12:28:32 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Intern
-HEADER = headers/Bureaucrat.hpp headers/AForm.hpp	headers/ShrubberyCreationForm.hpp	headers/RobotomyRequestForm.hpp	headers/PresidentialPardonForm.hpp
+HEADER = headers/Bureaucrat.hpp headers/AForm.hpp	headers/ShrubberyCreationForm.hpp	headers/RobotomyRequestForm.hpp	headers/PresidentialPardonForm.hpp	headers/Intern.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-SRC =	main.cpp srcs/Bureaucrat.cpp srcs/AForm.cpp srcs/ShrubberyCreationForm.cpp	srcs/RobotomyRequestForm.cpp	srcs/PresidentialPardonForm.cpp
+SRC =	main.cpp srcs/Bureaucrat.cpp srcs/AForm.cpp srcs/ShrubberyCreationForm.cpp	srcs/RobotomyRequestForm.cpp	srcs/PresidentialPardonForm.cpp	srcs/Intern.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
