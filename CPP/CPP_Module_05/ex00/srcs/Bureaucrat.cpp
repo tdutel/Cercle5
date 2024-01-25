@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 13:22:42 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:49:55 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ void Bureaucrat::decrement(void)
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& B)
 {
-	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << ".\033[0m";
+	out << "\x1b[32m" << B.getName() << "\033[0m, bureaucrat \x1B[34mgrade " << B.getGrade() << "\033[0m.";
 	return (out);
 }
