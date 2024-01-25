@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:47:36 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/25 13:41:02 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/25 13:44:02 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ AForm* Intern::makeForm(std::string name, std::string target)
 
 std::string	Intern::unknownForm(std::string name)
 {
-	std::string s = "Form \x1b[32m";
+	std::string s = "Form \"\x1b[32m";
 	s.append(name);
-	s.append("\033[0m doesn't exist.\n");
+	s.append("\033[0m\" doesn't exist.\n");
 	return(s);
 }
