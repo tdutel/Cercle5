@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:33:36 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/26 09:44:39 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:19:01 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
+# include <string>
+# include <sstream>
 
 class ScalarConverter
 {
@@ -22,6 +24,12 @@ private:
 	ScalarConverter(const ScalarConverter &cpy);
 // operator //
 	ScalarConverter	&operator=(const ScalarConverter &other);
+	bool	isNan(const std::string s);
+	bool	isNumber(const std::string s);
+	bool	isFloat(const std::string s);
+	void	exeNan();
+	void	exeInt();
+	void	exeFloat();
 
 public:
 
@@ -31,6 +39,7 @@ public:
 
 // function //
 	void	convert(std::string str);
+	void	type(std::string s);
 };
 
 
