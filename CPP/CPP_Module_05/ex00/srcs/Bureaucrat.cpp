@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/25 14:49:55 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 12:45:07 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,17 @@ int	Bureaucrat::getGrade(void) const
 	return (this->_grade);
 }
 
+const char*	Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+	return("\x1b[31mGrade is too high.\033[0m");
+}
+
+const char*	Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+	return("\x1b[31mGrade is too low.\033[0m");
+}
 
 /* Functions */
-
-std::string Bureaucrat::GradeTooHighException(void)
-{
-	return("\x1b[31mGrade too high.\033[0m");
-}
-
-std::string Bureaucrat::GradeTooLowException(void)
-{
-	return("\x1b[31mGrade too low.\033[0m");
-}
 
 void Bureaucrat::increment(void)
 {

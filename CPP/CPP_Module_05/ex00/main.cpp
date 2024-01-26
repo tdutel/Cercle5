@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:09 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/18 13:25:33 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:21:17 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(void)
 		B2.decrement();
 		std::cout << (B2) << std::endl;
 	}
-	catch (const std::string txtException){
-		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
+	catch (std::exception &e){
+		std::cout << std::endl << "\x1b[31mException : \033[0m" <<  e.what() << std::endl;
 	}
 
 
@@ -54,8 +54,8 @@ int	main(void)
 		B3.increment();
 		std::cout << (B3) << std::endl;
 	}
-	catch (const std::string txtException){
-		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
+	catch (std::exception &e){
+		std::cout << std::endl << "\x1b[31mException : \033[0m" <<  e.what() << std::endl;
 	}
 
 
@@ -67,8 +67,8 @@ int	main(void)
 		std::cout << "try to create a \x1b[32mGrade 0 Boy\033[0m..." << std::endl;
 		Bureaucrat	B4("Grade0Boy", 0);
 	}
-	catch (const std::string txtException){
-		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
+	catch (std::exception &e){
+		std::cout << std::endl << "\x1b[31mException : \033[0m" <<  e.what() << std::endl;
 	}
 	return (0);
 }
