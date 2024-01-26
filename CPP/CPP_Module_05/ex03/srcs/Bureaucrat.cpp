@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:02:08 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 15:57:03 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 13:02:28 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,17 @@ int	Bureaucrat::getGrade(void) const
 	return (this->_grade);
 }
 
-
-/* Functions */
-
-std::string Bureaucrat::GradeTooHighException(void)
+const char*	Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return("\x1b[31mGrade is too high.\033[0m");
 }
 
-std::string Bureaucrat::GradeTooLowException(void)
+const char*	Bureaucrat::GradeTooLowException::what(void) const throw()
 {
 	return("\x1b[31mGrade is too low.\033[0m");
 }
+
+/* Functions */
 
 void Bureaucrat::increment(void)
 {
@@ -111,7 +110,7 @@ void Bureaucrat::decrement(void)
 void Bureaucrat::signForm(AForm *F)
 {
 	if (getGrade() > F->getGradeSign())
-		std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't sign \x1b[32m" << F->getName() << "\033[0m because " << GradeTooLowException() << std::endl;
+		std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't sign \x1b[32m" << F->getName() << "\033[0m because \x1b[31mgrade is too low.\033[0m" << std::endl;
 	else if (F->getSigned() == false)
 	{
 		F->setSigned(true);
@@ -124,7 +123,7 @@ void Bureaucrat::signForm(AForm *F)
 void Bureaucrat::executeForm(AForm const &form)
 {
 	if (getGrade() > form.getGradeExec())
-		std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't execute \x1b[32m" << form.getName() << "\033[0m because " << GradeTooLowException() << std::endl;
+		std::cout <<"\x1b[32m" << getName() << "\033[0m couldn't execute \x1b[32m" << form.getName() << "\033[0m because \x1b[31mgrade is too low.\033[0m" << std::endl;
 	else if (form.getSigned() == false)
 		std::cout << "\x1b[32m" << form.getName() << "\033[0m couldn't execute \x1b[32m" << getName() << "\033[0m because it's not signed." << std::endl;
 	else

@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:20:01 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 15:17:22 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 13:00:48 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,19 @@ public:
 	int			getGradeExec(void) const;
 	bool		getSigned(void) const;
 
+// class //
+	class GradeTooHighException : public std::exception
+	{
+		public:
+			virtual const char* what(void) const throw();
+	};
+	class GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char* what(void) const throw();
+	};
+
 // functions //
-	std::string		GradeTooHighException();
-	std::string		GradeTooLowException();
 	void			beSigned(Bureaucrat B);
 	virtual void	execute(Bureaucrat const & executor) const = 0;
 
