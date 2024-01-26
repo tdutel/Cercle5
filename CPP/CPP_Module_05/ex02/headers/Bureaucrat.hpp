@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:21 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 14:03:56 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 12:55:09 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,19 @@ public:
 	std::string	getName(void) const;
 	int			getGrade(void) const;
 
+// class //
+	class GradeTooHighException : public std::exception
+	{
+		public:
+			virtual const char* what(void) const throw();
+	};
+	class GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char* what(void) const throw();
+	};
+
 // functions //
-	std::string	GradeTooHighException();
-	std::string	GradeTooLowException();
 	void		increment();
 	void		decrement();
 	void		signForm(AForm *F);

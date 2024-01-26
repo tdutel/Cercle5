@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:15:34 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 14:37:46 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 12:58:58 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,17 @@ bool AForm::getSigned(void) const
 	return (this->_signed);
 }
 
+const char*	AForm::GradeTooHighException::what(void) const throw()
+{
+	return("\x1b[31mGrade is too high.\033[0m");
+}
+
+const char*	AForm::GradeTooLowException::what(void) const throw()
+{
+	return("\x1b[31mGrade is too low.\033[0m");
+}
 
 /* Functions */
-
-std::string AForm::GradeTooHighException(void)
-{
-	return("\x1b[31mGrade too high.\033[0m");
-}
-
-std::string AForm::GradeTooLowException(void)
-{
-	return("\x1b[31mGrade too low.\033[0m");
-}
 
 void	AForm::beSigned(Bureaucrat B)
 {

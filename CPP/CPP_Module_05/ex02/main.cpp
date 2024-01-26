@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:00:09 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 16:03:43 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/26 12:53:48 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(void)
 		std::cout << std::endl;
 		delete(F1);
 	}
-	catch (const std::string txtException){
-		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
+	catch (std::exception &e){
+		std::cout << std::endl << "\x1b[31mException : \033[0m" <<  e.what() << std::endl;
 	}
 	
 	
@@ -72,8 +72,8 @@ int	main(void)
 		std::cout << std::endl;
 		delete(F1);
 	}
-	catch (const std::string txtException){
-		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
+	catch (std::exception &e){
+		std::cout << std::endl << "\x1b[31mException : \033[0m" <<  e.what() << std::endl;
 	}
 
 
@@ -102,8 +102,8 @@ int	main(void)
 		std::cout << std::endl;
 		delete(F1);
 	}
-	catch (const std::string txtException){
-		std::cout << std::endl << "\x1b[31mException : \033[0m" << txtException << std::endl;
+	catch (std::exception &e){
+		std::cout << std::endl << "\x1b[31mException : \033[0m" <<  e.what() << std::endl;
 	}
 
 	return (0);
