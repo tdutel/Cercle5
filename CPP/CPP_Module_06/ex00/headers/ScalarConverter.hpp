@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:33:36 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/26 15:19:01 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/29 11:42:02 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
-# include <string>
-# include <sstream>
+# include <iomanip>
 
 class ScalarConverter
 {
@@ -24,12 +23,16 @@ private:
 	ScalarConverter(const ScalarConverter &cpy);
 // operator //
 	ScalarConverter	&operator=(const ScalarConverter &other);
-	bool	isNan(const std::string s);
-	bool	isNumber(const std::string s);
-	bool	isFloat(const std::string s);
-	void	exeNan();
-	void	exeInt();
-	void	exeFloat();
+
+// function //
+	int		isChar(const 	std::string str);
+	int		type(const	std::string str);
+	void	exeNan(const	std::string str);
+	void	exeChar(const	std::string str);
+	void	exeInt(const	std::string str);
+	void	exeFloat(const	std::string str);
+	void	exeDouble(const	std::string str);
+	void	print(char c, int i, float f, double d);
 
 public:
 
@@ -38,9 +41,7 @@ public:
 	~ScalarConverter();
 
 // function //
-	void	convert(std::string str);
-	void	type(std::string s);
+	void	convert(std::string s);
 };
-
 
 #endif

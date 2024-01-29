@@ -6,13 +6,13 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:39:13 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/26 15:46:03 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/29 11:49:02 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ScalarConverter.hpp"
 
-
+// ----------------------------------------Constructor Destructor ----------------------------------------------- //
 ScalarConverter::ScalarConverter()
 {
 	std::cout << "ScalarConverter Constructor called" << std::endl;
@@ -31,133 +31,148 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 	return (*this);
 }
 
-void	ScalarConverter::convert(std::string str)
-{
-	if (isprint(str.at(0)))
-	{
-		char s = str.at(0);
-		std::cout << "char : " << s << std::endl;
-	}
-	else
-		std::cout << "Non displayable" << std::endl;
+// ----------------------------------------Constructor Destructor ----------------------------------------------- //
 
-	// int i = lexical_cast<int>(str);
-	// std::cout << "int :" << i << std::endl;
-}
-
-void	ScalarConverter::type(std::string s)
+void	ScalarConverter::convert(std::string s)
 {
-	if (isNan(s))
-		exeNan();
-	// else if ()//nombre negatif
-	// {}
-	switch (isNumber(s))
+	switch (type(s))
 	{
 		case 0 :
-			exeNan();
+			exeNan(s);
+			break;
 		case 1 :
-			exeInt();
+			exeInt(s);
+			break;
 		case 2 :
-			exeInt();
+			exeDouble(s);
+			break;
 		case 3 :
-			exeDouble(); //pos
-		case 4 :
-			exeDouble(); //negatif
-		case 5 :
-			exeFloat(); //pos
-		case 6 :
-			exeFloat(); //negatif
-	}
-	else if (isFloat(s))
-	{
-		exeFloat();
+			exeFloat(s);
+			break;
 	}
 }
 
-// nan = not a number
-
-
-// check functions //
-bool ScalarConverter::isNan(const std::string str)
+int	ScalarConverter::isChar(const std::string str)
 {
-	for (char c : str)
+	for (int i = 0; str[i]; i++)
 	{
-		if (!std::isalpha(c))
-			return false;
+		if ((str[i] < 32 || str[i] > 126))
+			return (-1);
+		else if (i > 0)
+			return (-1);
 	}
-	return true;
+	return (0);
 }
 
-// bool ScalarConverter::isNumber(const std::string str)
-// {
-// 	for (char c : str)
-// 	{
-// 		if (!std::isdigit(c))
-// 			return false;
-// 	}
-// 	return true;
-// }
-
-int	ScalarConverter::isNumber(const std::string str)
+int	ScalarConverter::type(const std::string str)
 {
 	int count = 0;
-	bool negatif = false;
-	if (str.at(0) == '-')
-	{
-		negatif = true;
+	size_t c = 0;
+	if (str[0] == '.')
+		return (0);
+	if (str[c] == '-')
 		c++;
-	}
-	for (c : str - 1)
+	for ( c; c < str.size() - 1; c++)
 	{
-		if (c == '.')
+		if (str[c] == '.' && std::isdigit(str[c - 1]))
 			count++;
-		if (!std::isdigit(c) && c != '.')
-			return (0);	// nan
+		if (!std::isdigit(str[c]) && str[c] != '.')
+			return (0);
 	}
-	if (str.back() == f)
-	if (count == 0 && negatif == false && std::isdigit(str.back()))
-		return (1); //int entier
-	else if (count == 0 && negatif == true && std::isdigit(str.back()))
-		return (2); // int negatif
-	else if (count == 1 && negatif == false && std::isdigit(str.back()) )
-		return (3); //double pos
-	else if (count == 1 && negatif == true && std::isdigit(str.back()) )
-		return (4); //double negatif
-	else if (count == 1 && negatif == false && str.back() == 'f' )
-		return (5); //float pos
-	else if (count == 1 && negatif == true && str.back() == 'f' )
-		return (6); //float negatif
+	if (count == 0 && std::isdigit(str.back()))
+		return (1);
+	else if (count == 1 && std::isdigit(str.back()) )
+		return (2);
+	else if (count == 1 && std::isdigit(str[c - 1]) && str.back() == 'f' )
+		return (3);
 	else
 		return (0);
 }
 
-// bool ScalarConverter::isFloat(const std::string str )
-// {
-// 	for (int i = 0; i < s.size(); i++)
-// 		if (s[i] == '.') count++;
-// 	if (count != 1)
-// 		return (false);
-// 	if (str.at(0) == '-' || )
-// 	std::istringstream iss(str);
-// 	float f;
-// 	iss >> std::noskipws >> f; // noskipws considers leading whitespace invalid
-// 	return iss.eof() && !iss.fail(); 
-// }
-
 
 // exec functions //
 
-void ScalarConverter::exeNan(void)
+void ScalarConverter::exeNan(const std::string str)
 {
-	std::cout << "Nan" << std::endl;
+	if (isChar(str) == 0)
+		std::cout << std::fixed << std::setprecision(1) << "char : '" << str << "'" << std::endl;
+	else
+		std::cout << "char : impossible" << std::endl;
+	std::cout << "int : impossible" << std::endl;
+	if (str == "+inf" || str == "+inff" || str == "-inf" || str == "-inff")
+	{
+		float f = static_cast<float>(std::stof(str));
+		double d = static_cast<double>(std::stod(str));
+		std::cout << std::fixed << std::setprecision(1) << "float : " << f << "f" << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << "double : " << d << std::endl;
+	}
+	else
+	{
+		std::cout << std::fixed << std::setprecision(1) << "float : nan" << "f" << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << "double : nan" << std::endl;
+	}
+	
 }
 
-void ScalarConverter::exeInt(void)
+void ScalarConverter::exeChar(const	std::string str)
 {
-	std::cout << "Int" << std::endl;
+	char c = str[0];
+
+	int	i = static_cast<int>(c);
+	float f = static_cast<float>(c);
+	double d = static_cast<double>(c);
+	print(c, i, f, d);
 }
 
-void ScalarConverter::exeFloat(void)
+void ScalarConverter::exeInt(const	std::string str)
 {
-	std::cout << "Float" << std::endl;
+	int i;
+	double tmp = std::stod(str);
+	if (tmp < -2147483648)
+		i = -2147483648;
+	else if (tmp > 2147483647)
+		i = 2147483647;
+	else
+		i = std::stoi(str);
+	char c =  static_cast<char>(tmp);
+	float f = static_cast<float>(tmp);
+	double d = static_cast<double>(tmp);
+	print(c, i, f, d);
+}
+
+void ScalarConverter::exeFloat(const	std::string str)
+{
+	float f = std::stof(str);
+
+	char c = static_cast<char>(f);
+	int	i = static_cast<int>(f);
+	double d = static_cast<double>(f);
+	print(c, i, f, d);
+}
+
+void ScalarConverter::exeDouble(const	std::string str)
+{
+	double d = std::stod(str);
+
+	char c = static_cast<char>(d);
+	int	i = static_cast<int>(d);
+	float f = static_cast<float>(d);
+	print(c, i, f, d);
+}
+
+
+void	ScalarConverter::print(char c, int i, float f, double d)
+{
+	if (c <= 31)
+		std::cout << "char : Non displayable" << std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << "char : '" << c << "'" << std::endl;
+	if (i < -2147483647 || i > 2147483646)
+	{
+		std::cout << std::fixed << std::setprecision(1) << "int : impossible" << std::endl;
+	}
+	else 
+		std::cout << std::fixed << std::setprecision(1) << "int : " << i << std::endl;
+	std::cout << std::fixed << std::setprecision(1) << "float : " << f << "f" << std::endl;
+	std::cout << std::fixed << std::setprecision(1) << "double : " << d << std::endl;
 }

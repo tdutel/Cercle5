@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:30:43 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/26 15:17:30 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/29 11:32:43 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ScalarConverter	s;
-	s.type(argv[1]);
+	std::cout << std::endl;
+	s.convert(argv[1]);
+	std::cout << std::endl;
 	return (0);
 }
