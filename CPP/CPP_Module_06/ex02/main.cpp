@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:15:47 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/30 10:15:01 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/30 10:47:49 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ Base	*generate(void)
 
 void	identify(Base *p)
 {
-	A	*tmpA;
-	tmpA = dynamic_cast<A*>(p);
+	A	*tmpA = dynamic_cast<A*>(p);
 	if (tmpA != NULL)
 	{
 		std::cout << "type is A" << std::endl;
