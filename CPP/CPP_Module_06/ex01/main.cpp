@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:34:01 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/29 13:51:49 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/30 09:44:25 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	main(void)
 	Data	*s_data_cpy = NULL;
 	std::cout << "s_data_cpy : " << s_data_cpy << std::endl << std::endl << std::endl;
 
-	Serializer S;
+	
 	uintptr_t	cpy;
-
-	cpy = S.serialize(&s_data);
-	s_data_cpy = S.deserialize(cpy);
+	
+	cpy = Serializer::serialize(&s_data);
+	s_data_cpy = Serializer::deserialize(cpy);
 
 	std::cout << std::endl << std::endl << "Comparing s_data with s_data_cpy :" << std::endl << std::endl;
 
