@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:39:13 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/31 15:25:34 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 15:59:52 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ int	ScalarConverter::type(const std::string str)
 		return (0);
 	if (str[c] == '-')
 		c++;
-	for (c ; c < str.size() - 1; c++)
+	while (c < str.size() - 1)
 	{
 		if (str[c] == '.' && std::isdigit(str[c - 1]))
 			count++;
 		if (!std::isdigit(str[c]) && str[c] != '.')
 			return (0);
+		c++;
 	}
 	if (count == 0 && std::isdigit(str[c]))
 		return (1);

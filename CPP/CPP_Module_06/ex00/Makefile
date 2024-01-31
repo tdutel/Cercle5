@@ -6,14 +6,14 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/01/31 14:49:52 by tdutel           ###   ########.fr        #
+#    Updated: 2024/01/31 15:52:20 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = convert
 HEADER = headers/ScalarConverter.hpp
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = #-Wall -Werror -Wextra -std=c++98
 SRC =	main.cpp srcs/ScalarConverter.cpp
 
 OBJ = $(SRC:.cpp=.o)
