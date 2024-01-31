@@ -6,7 +6,7 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/01/25 12:28:32 by tdutel           ###   ########.fr        #
+#    Updated: 2024/01/31 14:23:50 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ all :
 $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@
 
-%.o : %.c $(HEADER) Makefile
+%.o : %.cpp $(HEADER) Makefile
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean :
