@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:02:07 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 15:55:29 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:43:39 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 		std::cout << "\x1b[32m" << executor.getName() << "\033[0m couldn't execute \x1b[32m" << getName() << "\033[0m because it's not signed." << std::endl;
 	else
 	{
-		srand(time(0));
-		int	x = rand() % 2;
+		std::srand(time(0));
+		int	x = std::rand() % 2;
 		if (x == 0)
 			std::cout << "\x1b[32m" << _target << "\033[0m has been robotomized successfully" << std::endl;
 		else

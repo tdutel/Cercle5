@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:15:34 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/26 13:01:41 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:33:00 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,6 @@ void	AForm::beSigned(Bureaucrat B)
 	if (B.getGrade() > getGradeSign())
 		throw(GradeTooLowException());
 	B.signForm(this);
-}
-
-void	AForm::execute(Bureaucrat const & executor) const
-{
 }
 
 /* Overload Operator */

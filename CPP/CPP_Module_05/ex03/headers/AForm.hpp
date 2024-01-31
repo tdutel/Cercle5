@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:20:01 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/26 13:00:48 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:31:37 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 # include <fstream>
 # include <stdbool.h>
-# include <ctime>
+# include <cstdlib>
 
 # include "Bureaucrat.hpp"
 

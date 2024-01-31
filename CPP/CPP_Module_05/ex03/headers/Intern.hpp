@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:47:22 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/25 14:30:17 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:41:08 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ public:
 
 // Constructor //
 	Intern();
-	Intern(const Intern &cpy);
 	~Intern();
-
-// operator //
-	Intern	&operator=(const Intern &other);
 
 // function //
 	AForm *makeForm(std::string name, std::string target);
 	std::string unknownForm(std::string name);
+
 private:
+	Intern(const Intern &cpy);
+// operator //
+	Intern	&operator=(const Intern &other);
 
 };
 

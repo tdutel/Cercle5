@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:47:36 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/25 14:44:09 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:42:59 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ Intern::Intern()
 
 Intern::Intern(const Intern &cpy)
 {
+	(void)cpy;
 	std::cout << "\x1b[33mIntern Copy Constructor called.\033[0m" << std::endl;
 }
 
@@ -32,6 +33,7 @@ Intern::~Intern()
 // operator //
 Intern& Intern::operator=(const Intern &other)
 {
+	(void)other;
 	return (*this);
 }
 
@@ -75,8 +77,9 @@ std::string	Intern::unknownForm(std::string name)
 
 
 /* Overload Operator */
-std::ostream& operator<<(std::ostream &out, const Intern& B)
+std::ostream& operator<<(std::ostream &out, const Intern& I)
 {
-	std::cout << "Intern" << std::endl;
+	(void)I;
+	std::cout << "Intern " << std::endl;
 	return (out);
 }

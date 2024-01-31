@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:26:31 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/24 15:54:13 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:27:37 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	{
 		std::string s1 = _target;
 		s1.append("_shrubbery");
-		std::ofstream outfile (s1);
+		std::ofstream outfile (s1.c_str());
 		outfile << "      ,`\"\"\',\n      ;^__^;\n      ;\' ` ;\t\t\t HAPPY CACTUS\n ,,,  ;`,\',;\n;,` ; ;\' ` ;   ,',\n;`,'; ;`,',;  ;,' ;\n;',`; ;` ' ; ;`'`';\n;` '',''` `,',`',;\n `''`'; ', ;`'`'\n      ;' `';\n      ;` ' ;\n      ;' `';\n      ;` ' ;\n      ; ',';\n      ;,' ';\n    \\|/|\\/|\\|/\n     \\\\|/\\|//" << std::endl;
 		outfile.close();
 
