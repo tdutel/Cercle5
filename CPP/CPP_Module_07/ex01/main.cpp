@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:09:52 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/30 13:52:35 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:11:07 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main()
 {
 	int tab[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	iter(tab, 10, &print);
-	
+	std::cout << std::endl;
 	char chab[] = "eh yoo welcome to my level";
 	iter(chab, 26, &print);
 	

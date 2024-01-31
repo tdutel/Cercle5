@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:59:19 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/31 10:52:02 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:12:59 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ public:
 	this->_size = other._size;
 	this->_tab = new T[this->_size];
 	for (size_t i = 0; i < this->_size; i++)
-	{
 		this->_tab[i] = other._tab[i];
-	}
 	std::cout << "Copy assignment operator called" << std::endl;
 	return (*this);
 }
@@ -84,9 +82,7 @@ public:
 	T	&operator[](const unsigned int i)
 	{
 		if (i >= this->_size)
-		{
 			throw std::exception();
-		}
 		return (this->_tab[i]);
 	}
 
