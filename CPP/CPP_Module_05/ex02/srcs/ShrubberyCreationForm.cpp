@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:26:31 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/31 14:27:37 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:39:19 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,3 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 
 	}
 }
-
-// /* Overload Operator */
-
-// std::ostream& operator<<(std::ostream &out, const ShrubberyCreationForm& F)
-// {
-// 	out << "+---------------------------------------+" << std::endl;
-// 	out << "|        Shrubbery Creation Form        |"<< std::endl;
-// 	out << "+---------------------------------------+" << std::endl;
-// 	out << "| Form : \x1b[32m" << F.getName() << "  \033[0m	|" << std::endl;
-// 	out << "| Signed : " << F.getSigned() << "				|"<< std::endl;
-// 	out << "| Grade required to sign it : \x1B[34m" << F.getGradeSign() << " \033[0m	|" << std::endl;
-// 	out << "| Grade required to execute it : \x1B[34m" << F.getGradeExec() << "\033[0m	|" << std::endl;
-// 	out << "+---------------------------------------+" << std::endl;
-// 	return (out);
-// }
