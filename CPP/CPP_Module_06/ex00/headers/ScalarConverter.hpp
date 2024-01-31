@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:33:36 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/29 11:42:02 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 15:16:19 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <iomanip>
+# include <string>
+# include <cstdlib>
 
 class ScalarConverter
 {

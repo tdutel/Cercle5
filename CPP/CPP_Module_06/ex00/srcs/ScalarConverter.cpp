@@ -6,12 +6,11 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:39:13 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/29 11:49:02 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/01/31 15:25:34 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ScalarConverter.hpp"
-
 // ----------------------------------------Constructor Destructor ----------------------------------------------- //
 ScalarConverter::ScalarConverter()
 {
@@ -19,6 +18,7 @@ ScalarConverter::ScalarConverter()
 }
 ScalarConverter::ScalarConverter(const ScalarConverter &cpy)
 {
+	(void)cpy;
 	std::cout << "ScalarConverter Copy Constructor called" << std::endl;
 }
 ScalarConverter::~ScalarConverter()
@@ -28,6 +28,7 @@ ScalarConverter::~ScalarConverter()
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 {
+	(void)other;
 	return (*this);
 }
 
@@ -72,18 +73,18 @@ int	ScalarConverter::type(const std::string str)
 		return (0);
 	if (str[c] == '-')
 		c++;
-	for ( c; c < str.size() - 1; c++)
+	for (c ; c < str.size() - 1; c++)
 	{
 		if (str[c] == '.' && std::isdigit(str[c - 1]))
 			count++;
 		if (!std::isdigit(str[c]) && str[c] != '.')
 			return (0);
 	}
-	if (count == 0 && std::isdigit(str.back()))
+	if (count == 0 && std::isdigit(str[c]))
 		return (1);
-	else if (count == 1 && std::isdigit(str.back()) )
+	else if (count == 1 && std::isdigit(str[c]) )
 		return (2);
-	else if (count == 1 && std::isdigit(str[c - 1]) && str.back() == 'f' )
+	else if (count == 1 && std::isdigit(str[c - 1]) && str[c] == 'f' )
 		return (3);
 	else
 		return (0);
@@ -101,8 +102,8 @@ void ScalarConverter::exeNan(const std::string str)
 	std::cout << "int : impossible" << std::endl;
 	if (str == "+inf" || str == "+inff" || str == "-inf" || str == "-inff")
 	{
-		float f = static_cast<float>(std::stof(str));
-		double d = static_cast<double>(std::stod(str));
+		float f = static_cast<float>(std::atof(str.c_str()));
+		double d = static_cast<double>(std::atof(str.c_str()));
 		std::cout << std::fixed << std::setprecision(1) << "float : " << f << "f" << std::endl;
 		std::cout << std::fixed << std::setprecision(1) << "double : " << d << std::endl;
 	}
@@ -127,13 +128,13 @@ void ScalarConverter::exeChar(const	std::string str)
 void ScalarConverter::exeInt(const	std::string str)
 {
 	int i;
-	double tmp = std::stod(str);
+	double tmp = std::atof(str.c_str());
 	if (tmp < -2147483648)
 		i = -2147483648;
 	else if (tmp > 2147483647)
 		i = 2147483647;
 	else
-		i = std::stoi(str);
+		i = std::atoi(str.c_str());
 	char c =  static_cast<char>(tmp);
 	float f = static_cast<float>(tmp);
 	double d = static_cast<double>(tmp);
@@ -142,7 +143,7 @@ void ScalarConverter::exeInt(const	std::string str)
 
 void ScalarConverter::exeFloat(const	std::string str)
 {
-	float f = std::stof(str);
+	float f = std::atof(str.c_str());
 
 	char c = static_cast<char>(f);
 	int	i = static_cast<int>(f);
@@ -152,7 +153,7 @@ void ScalarConverter::exeFloat(const	std::string str)
 
 void ScalarConverter::exeDouble(const	std::string str)
 {
-	double d = std::stod(str);
+	double d = std::atof(str.c_str());
 
 	char c = static_cast<char>(d);
 	int	i = static_cast<int>(d);
