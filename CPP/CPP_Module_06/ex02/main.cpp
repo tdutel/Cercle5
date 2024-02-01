@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:15:47 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/30 10:47:49 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/01 09:44:31 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include"headers/B.hpp"
 #include"headers/C.hpp"
 
+#include <cstdlib>
 #include <iostream>
-#include <ctime>
 
 Base	*generate(void)
 {
-	std::srand(std::time(nullptr));
+	std::srand(time(0));
 	int	random = std::rand() % 3;
 	Base *p = NULL;
 	switch (random)
@@ -68,24 +68,27 @@ void	identify(Base &p)
 	{
 		A	&tmpA = dynamic_cast<A&>(p);
 		std::cout << "type is A" << std::endl;
+		(void)tmpA;
 	}
-	catch(std::bad_cast &bc)
+	catch(std::exception &bc)
 	{
 	}
 	try
 	{
 		B	&tmpB = dynamic_cast<B&>(p);
 		std::cout << "type is B" << std::endl;
+		(void)tmpB;
 	}
-	catch(std::bad_cast &bc)
+	catch(std::exception &bc)
 	{
 	}
 	try
 	{
 		C	&tmpC = dynamic_cast<C&>(p);
 		std::cout << "type is C" << std::endl;
+		(void)tmpC;
 	}
-	catch(std::bad_cast &bc)
+	catch(std::exception &bc)
 	{
 	}
 
