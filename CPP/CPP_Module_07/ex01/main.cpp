@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:09:52 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/31 13:11:07 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/01 09:50:28 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main()
 	std::cout << std::endl;
 	char chab[] = "eh yoo welcome to my level";
 	iter(chab, 26, &print);
-	
+
 	return (0);
 }
