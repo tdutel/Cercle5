@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:59:19 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/31 13:12:59 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/01 10:08:12 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
 	Array(void) : _size(0)
 	{
 		this->_tab = new T();
-		std::cout << "Constructor called" << std::endl;
+		std::cout << "\x1b[33mConstructor called\033[0m" << std::endl;
 	};
 
 	Array(const Array &cpy) : _size(cpy._size)
@@ -39,7 +39,7 @@ public:
 			this->_tab = new T[this->_size];
 				for (size_t i = 0; i != this->_size; i++)
 					this->_tab[i] = cpy._tab[i];
-			std::cout << "Copy Constructor called" << std::endl;
+			std::cout << "\x1b[33mCopy Constructor called\033[0m" << std::endl;
 		}
 	};
 
@@ -54,13 +54,13 @@ public:
 			for (size_t i = 0; i != this->_size; i++)
 					this->_tab[i] = T();
 		}
-		std::cout << "Constructor Parametric called" << std::endl;
+		std::cout << "\x1b[33mConstructor Parametric called\033[0m" << std::endl;
 	};
 
 	~Array()
 	{
 		delete[] this->_tab;
-		std::cout << "Destructor called" << std::endl;
+		std::cout << "\x1b[33mDestructor called\033[0m" << std::endl;
 	};
 
 // operator //
@@ -75,7 +75,7 @@ public:
 	this->_tab = new T[this->_size];
 	for (size_t i = 0; i < this->_size; i++)
 		this->_tab[i] = other._tab[i];
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "\x1b[33mCopy assignment operator called\033[0m" << std::endl;
 	return (*this);
 }
 
