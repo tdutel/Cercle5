@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:15:34 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/26 12:50:21 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/01 10:41:41 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ std::ostream& operator<<(std::ostream &out, const Form& F)
 	out << "|                 Form                  |"<< std::endl;
 	out << "+---------------------------------------+" << std::endl;
 	out << "| Form : \x1b[32m" << F.getName() << "  \033[0m			|" << std::endl;
-	out << "| Signed : " << F.getSigned() << "				|"<< std::endl;
+	out << "| Signed : " << std::boolalpha << F.getSigned() << "   			|"<< std::endl;
 	out << "| Grade required to sign it : \x1B[34m" << F.getGradeSign() << " \033[0m	|" << std::endl;
 	out << "| Grade required to execute it : \x1B[34m" << F.getGradeExec() << "\033[0m	|" << std::endl;
 	out << "+---------------------------------------+" << std::endl;
