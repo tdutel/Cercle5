@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:38:03 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/29 13:50:31 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/01 09:33:32 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ Serializer::Serializer()
 
 Serializer::Serializer(const Serializer &cpy)
 {
+	(void)cpy;
 }
 
 Serializer::~Serializer()
@@ -26,6 +27,7 @@ Serializer::~Serializer()
 
 Serializer&	Serializer::operator=(const Serializer &other)
 {
+	(void)other;
 	return (*this);
 }
 

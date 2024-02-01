@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:37:53 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/30 09:42:37 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/01 09:33:39 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ public:
 	static	uintptr_t	serialize(Data* ptr);
 	static	Data*	deserialize(uintptr_t raw);
 };
-
 
 #endif
