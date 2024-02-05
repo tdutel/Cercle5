@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:15:27 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/05 09:42:42 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/05 10:03:50 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SPAN_HPP
 
 # include <iostream>
+# include <algorithm>
 
 class Span
 {
