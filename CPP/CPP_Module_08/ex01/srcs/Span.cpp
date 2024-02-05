@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:19:35 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/05 11:46:11 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/05 13:21:34 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 Span::Span(unsigned int N)
 {
 	_tab = new	int[N];
+	unsigned int	i = 0;
+
+	while (i < N)
+	{
+		_tab[i++] = 0;
+	}
+	
 }
 
 Span::Span(const Span &cpy)
@@ -50,6 +57,7 @@ void	Span::addNumber(int	n)
 
 int		Span::shortestSpan()
 {
+	// int	N = 5;
 	int	N = len(_tab);
 	int	*cpy = new int[N];
 
@@ -80,15 +88,6 @@ int		Span::longestSpan()
 		cpy[i] = _tab[i];
 	std::sort(cpy, cpy + N);
 	int result = cpy[N - 1] - cpy[0];
-	// int i = 0;
-	// int max = std::max(cpy[i + 1] - cpy[i], cpy[i + 2] - cpy[i + 1]);
-	// int result = max;
-	// while (i + 2 < N)
-	// {
-	// 	max = std::max(cpy[i + 1] - cpy[i], cpy[i + 2] - cpy[i + 1]);
-	// 	result = std::max(result, max);
-	// 	i++;
-	// }
 	delete[] cpy;
 	return (result);
 }
