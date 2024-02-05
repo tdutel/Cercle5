@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:26:16 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/02 15:35:39 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/05 09:41:15 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ int main()
 	sp.addNumber(11);
 	for (size_t i = 0; i < 5; i++)
 	{
-		std::cout << "sp[" << i << "] : " << sp.get_nb(i) << std::endl;
+		std::cout << "sp[" << i << "] : " << sp.getNb(i) << std::endl;
 	}
-
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	Span spcpy = sp;
+	for (int i = 0; i < spcpy.len(spcpy.getTab()); i++)
+	{
+		std::cout << "spcpy[" << i << "] : " << spcpy.getNb(i) << std::endl;
+	}
+	// std::cout << sp.shortestSpan() << std::endl;
+	// std::cout << sp.longestSpan() << std::endl;
 return 0;
 }
