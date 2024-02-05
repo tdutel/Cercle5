@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:09:22 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/31 13:26:24 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:07:48 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,15 @@
 # define ITER_HPP
 
 # include <iostream>
+# include <string>
 
-template <typename T>
-void	print(T x)
+template <typename T, typename U, typename V>
+void	iter(T *tab, U len, V (*f)(T&))
 {
-	std::cout << *x << std::endl;
-};
-
-template <typename T>
-void	iter(T &tab, unsigned int len, void(*print)(T x))
-{
-	for (size_t i = 0; i < len; i++)
+	for (U i = 0; i < len; ++i)
 	{
 		std::cout << "tab[" << i << "] : ";
-		print(&tab[i]);
+		f(tab[i]);
 	}
 };
 
