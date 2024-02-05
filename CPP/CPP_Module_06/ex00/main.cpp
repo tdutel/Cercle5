@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:30:43 by tdutel            #+#    #+#             */
-/*   Updated: 2024/01/29 11:32:43 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/05 10:46:53 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int	main(int argc, char **argv)
 		std::cout << "Wrong numbers of arguments." << std::endl;
 		return (1);
 	}
-	ScalarConverter	s;
 	std::cout << std::endl;
-	s.convert(argv[1]);
+	ScalarConverter::convert(argv[1]);
 	std::cout << std::endl;
 	return (0);
 }
