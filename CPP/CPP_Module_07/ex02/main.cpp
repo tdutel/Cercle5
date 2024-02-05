@@ -6,21 +6,12 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:58:35 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/05 14:13:25 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/05 14:18:24 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/Array.hpp"
 
-#define RESET "\033[0m"
-#define PURPLE "\x1b[35m"
-#define GREEN "\x1b[32m"
-#define BLUE "\x1b[36m"
-
-
-#include <string>
-
-//TODO replace inline color flag
 int	main()
 {
 	try

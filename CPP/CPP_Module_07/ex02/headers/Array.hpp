@@ -6,14 +6,16 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:59:19 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/01 10:08:12 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/05 14:19:12 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+# include"Color.hpp"
 # include <iostream>
+# include <string>
 
 template <typename T>
 class Array
@@ -29,7 +31,7 @@ public:
 	Array(void) : _size(0)
 	{
 		this->_tab = new T();
-		std::cout << "\x1b[33mConstructor called\033[0m" << std::endl;
+		std::cout << YELLOW << "Constructor called" << RESET << std::endl;
 	};
 
 	Array(const Array &cpy) : _size(cpy._size)
@@ -39,7 +41,7 @@ public:
 			this->_tab = new T[this->_size];
 				for (size_t i = 0; i != this->_size; i++)
 					this->_tab[i] = cpy._tab[i];
-			std::cout << "\x1b[33mCopy Constructor called\033[0m" << std::endl;
+			std::cout << YELLOW << "Copy Constructor called" << RESET << std::endl;
 		}
 	};
 
@@ -54,13 +56,13 @@ public:
 			for (size_t i = 0; i != this->_size; i++)
 					this->_tab[i] = T();
 		}
-		std::cout << "\x1b[33mConstructor Parametric called\033[0m" << std::endl;
+		std::cout << YELLOW << "Constructor Parametric called" RESET << std::endl;
 	};
 
 	~Array()
 	{
 		delete[] this->_tab;
-		std::cout << "\x1b[33mDestructor called\033[0m" << std::endl;
+		std::cout << YELLOW << "Destructor called" RESET << std::endl;
 	};
 
 // operator //
@@ -75,7 +77,7 @@ public:
 	this->_tab = new T[this->_size];
 	for (size_t i = 0; i < this->_size; i++)
 		this->_tab[i] = other._tab[i];
-	std::cout << "\x1b[33mCopy assignment operator called\033[0m" << std::endl;
+	std::cout << YELLOW << "Copy assignment operator called" RESET << std::endl;
 	return (*this);
 }
 

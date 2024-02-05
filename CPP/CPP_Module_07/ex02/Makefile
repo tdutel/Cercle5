@@ -6,12 +6,12 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/02/01 09:51:41 by tdutel           ###   ########.fr        #
+#    Updated: 2024/02/05 14:18:03 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Array
-HEADER = headers/Array.hpp
+HEADER = headers/Array.hpp	headers/Color.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 SRC =	main.cpp
