@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:15:27 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/05 14:51:02 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/07 10:49:58 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <algorithm>
+# include <vector>
 
 class Span
 {
@@ -32,14 +33,11 @@ Span &operator=(const Span& other);
 	void	addNumber(int n);
 	int		shortestSpan();
 	int		longestSpan();
-	int	getNb(unsigned int n);
-	int	*getTab();
-	int	len(int *_tab);
-
 
 	private:
-
-	int	*_tab;
+	Span();
+	std::vector<int> _tab;
+	unsigned	int _max;
 
 };
 #endif
