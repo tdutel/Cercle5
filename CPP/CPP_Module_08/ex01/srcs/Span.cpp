@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:19:35 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/07 11:26:54 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/07 13:26:12 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,22 @@ void	Span::addNumber(int	n)
 	std::cout << std::endl;
 }
 
+void	Span::addNumber(std::vector<int>::const_iterator itr, size_t size)
+{}
+
+void	Span::addNumber(std::vector<int>::const_iterator itr, std::vector<int> ve)
+{
+	if (this->_tab.size() + ve.size() <= this->_max)
+	{
+		this->_tab.insert(itr, ve.begin(), ve.end());
+	}
+	else
+	{
+		std::cerr << "Error : Max numbers reached ! from ";
+		throw std::exception();
+	}
+}
+
 int		Span::shortestSpan()
 {
 	if (this->_tab.size() <= 1)
@@ -85,11 +101,15 @@ int		Span::shortestSpan()
 
 int		Span::longestSpan()
 {
-{
+	if (this->_tab.size() <= 1)
+		{
+			std::cerr << "Error : Not enough numbers ! from ";
+			throw std::exception();
+		}
 	Span	cpy(*this);
 
 	std::sort(cpy._tab.begin(), cpy._tab.end());
 	int result = cpy._tab[cpy._max - 1] - cpy._tab[0];
 	return (result);
-}
+
 }

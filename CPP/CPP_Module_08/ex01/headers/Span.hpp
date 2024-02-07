@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:15:27 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/07 11:20:51 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/07 13:18:42 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ Span &operator=(const Span& other);
 
 // functions //
 	void	addNumber(int n);
+	void	addNumber(std::vector<int>::const_iterator itr, size_t size);
+	void	addNumber(std::vector<int>::const_iterator itr, std::vector<int> ve);
 	int		shortestSpan();
 	int		longestSpan();
 
