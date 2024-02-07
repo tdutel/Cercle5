@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:32:29 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/02 13:46:23 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/07 09:11:00 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,17 +111,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error : not found the occurence. (" << e.what() <<")" << "\n\n\n";
+		std::cout << "Error : not found the occurence. (" << e.what() <<")" << "\n\n";
 	}
 	return (0);
 }
-
-		// std::deque<int>::iterator i;
-		// std::cout << *i << std::endl;
-		// // int a[] = { 5, 6, 1, 10, 2, 10};
-		// // std::vector<int> vect(a, a + 6);
-
-		// std::vector<int> vector1 = {1, 2, 3, 4, 5};
-		// easyfind(vector1, 4);
-		// const std::vector<int> b = {1, 4, 3, 8, 5};
-		// easyfind(b,4);
