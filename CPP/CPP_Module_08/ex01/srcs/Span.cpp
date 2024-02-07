@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:19:35 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/07 10:55:56 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/07 11:26:54 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void	Span::addNumber(int	n)
 	if (this->_tab.size() < this->_max)
 		this->_tab.push_back(n);
 	else
+	{
+		std::cerr << "Error : Max numbers reached ! from ";
 		throw std::exception();
+	}
 	for	(size_t i = 0; i < this->_tab.size(); i++)
 		std::cout << "tab[" << i << "] = " << this->_tab[i] << "\t";
 	std::cout << std::endl;
@@ -58,6 +61,11 @@ void	Span::addNumber(int	n)
 
 int		Span::shortestSpan()
 {
+	if (this->_tab.size() <= 1)
+		{
+			std::cerr << "Error : Not enough numbers ! from ";
+			throw std::exception();
+		}
 	Span	cpy(*this);
 	std::sort(cpy._tab.begin(), cpy._tab.end());
 	// for	(size_t i = 0; i < this->_tab.size(); i++)

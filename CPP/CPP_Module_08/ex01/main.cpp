@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:26:16 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/07 10:59:46 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/07 11:56:41 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 
 int main()
 {
-	Span sp = Span(5);
+	try
+	{
+		Span sp = Span(5);
+	
+		std::cout << std::endl << "add Number 6, 3, 17, 9, 11 to tab." << std::endl << std::endl;
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+	
+		std::cout << std::endl << "shortestSpan : " << sp.shortestSpan() << std::endl;
+		std::cout << "longestSpan : " << sp.longestSpan() << std::endl;
+		
+		std::cout << std::endl << "add number(...)" << std::endl;
+		sp.addNumber(1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
-	std::cout << std::endl << "add Number 6, 3, 17, 9, 11 to tab." << std::endl << std::endl;
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
-
-	std::cout << std::endl << "shortestSpan : " << sp.shortestSpan() << std::endl;
-	std::cout << "longestSpan : " << sp.longestSpan() << std::endl;
-
-// 	return 0;
-// }
-	// for (int i = 0; i < sp.len(sp.getTab()); i++)
-	// 	std::cout << "sp[" << i << "] : " << sp.getNb(i) << std::endl;
-	// std::cout << std::endl << sp.shortestSpan() << std::endl;
-	// std::cout << sp.longestSpan() << std::endl << std::endl;
-	// for (int i = 0; i < sp.len(sp.getTab()); i++)
-	// 	std::cout << "sp[" << i << "] : " << sp.getNb(i) << std::endl;
-	// Span spcpy = sp;
-	// for (int i = 0; i < spcpy.len(spcpy.getTab()); i++)
-	// 	std::cout << "spcpy[" << i << "] : " << spcpy.getNb(i) << std::endl;
 return 0;
 }
 

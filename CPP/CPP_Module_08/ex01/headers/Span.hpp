@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:15:27 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/07 10:49:58 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/07 11:20:51 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Span
 	Span(unsigned int N);
 	Span(const Span &cpy);
 	~Span();
+
 
 // operator //
 Span &operator=(const Span& other);
