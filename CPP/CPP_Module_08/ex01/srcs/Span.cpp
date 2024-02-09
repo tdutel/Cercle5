@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:19:35 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/07 13:26:12 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:48:18 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,24 @@ void	Span::addNumber(int	n)
 		this->_tab.push_back(n);
 	else
 	{
-		std::cerr << "Error : Max numbers reached ! from ";
-		throw std::exception();
+		throw MaxException();
 	}
-	for	(size_t i = 0; i < this->_tab.size(); i++)
-		std::cout << "tab[" << i << "] = " << this->_tab[i] << "\t";
+	if (this->_tab.size() <= 10)
+		for	(size_t i = 0; i < this->_tab.size(); i++)
+			std::cout << YELLOW << "tab[" << i << "]" << RESET <<  " = " << BLUE << this->_tab[i] << RESET << "\t";
+	else
+		std::cout << YELLOW << "elements added successfully." << RESET << std::endl;
 	std::cout << std::endl;
 }
 
-void	Span::addNumber(std::vector<int>::const_iterator itr, size_t size)
-{}
+void	Span::addNumber(std::vector<int>::iterator itr, size_t size)
+{
+	std::vector<int>	v2(size, 0);
+	if (this->_tab.size() + size <= this->_max)
+		this->_tab.insert(itr, v2.begin(), v2.end());
+}
 
-void	Span::addNumber(std::vector<int>::const_iterator itr, std::vector<int> ve)
+void	Span::addNumber(std::vector<int>::iterator itr, std::vector<int> ve)
 {
 	if (this->_tab.size() + ve.size() <= this->_max)
 	{
@@ -70,8 +76,7 @@ void	Span::addNumber(std::vector<int>::const_iterator itr, std::vector<int> ve)
 	}
 	else
 	{
-		std::cerr << "Error : Max numbers reached ! from ";
-		throw std::exception();
+		throw MaxException();
 	}
 }
 
@@ -79,14 +84,10 @@ int		Span::shortestSpan()
 {
 	if (this->_tab.size() <= 1)
 		{
-			std::cerr << "Error : Not enough numbers ! from ";
-			throw std::exception();
+			throw MinException();
 		}
 	Span	cpy(*this);
 	std::sort(cpy._tab.begin(), cpy._tab.end());
-	// for	(size_t i = 0; i < this->_tab.size(); i++)
-	// 	std::cout << "tab[" << i << "] = " << this->_tab[i] << std::endl;
-	// std::cout << std::endl;
 	size_t i = 0;
 	int min = std::min(cpy._tab[i + 1] - cpy._tab[i], cpy._tab[i + 2] - cpy._tab[i + 1]);
 	int result = min;
@@ -103,8 +104,7 @@ int		Span::longestSpan()
 {
 	if (this->_tab.size() <= 1)
 		{
-			std::cerr << "Error : Not enough numbers ! from ";
-			throw std::exception();
+			throw MinException();
 		}
 	Span	cpy(*this);
 
@@ -113,3 +113,24 @@ int		Span::longestSpan()
 	return (result);
 
 }
+
+std::vector<int>::iterator	Span::getIt(void)
+{
+	return (this->_tab.begin());
+};
+
+std::vector<int>::iterator	Span::getIte(void)
+{
+	return (this->_tab.end());
+};
+
+
+const char*	Span::MinException::what(void) const throw()
+{
+	return("Error : Not enough numbers !");
+};
+
+const char*	Span::MaxException::what(void) const throw()
+{
+	return("Error : Max numbers reached !");
+};

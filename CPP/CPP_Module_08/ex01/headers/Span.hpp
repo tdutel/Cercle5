@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:15:27 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/07 13:18:42 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:39:35 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <algorithm>
 # include <vector>
 
+# include "Color.hpp"
+
 class Span
 {
 	public:
@@ -26,16 +28,29 @@ class Span
 	Span(const Span &cpy);
 	~Span();
 
+	std::vector<int>::iterator	getIt(void);
+	std::vector<int>::iterator	getIte(void);
 
 // operator //
 Span &operator=(const Span& other);
 
 // functions //
 	void	addNumber(int n);
-	void	addNumber(std::vector<int>::const_iterator itr, size_t size);
-	void	addNumber(std::vector<int>::const_iterator itr, std::vector<int> ve);
+	void	addNumber(std::vector<int>::iterator itr, size_t size);
+	void	addNumber(std::vector<int>::iterator itr, std::vector<int> ve);
 	int		shortestSpan();
 	int		longestSpan();
+	
+	class MaxException : public std::exception
+	{
+		public:
+			virtual const char* what(void) const throw();
+	};
+	class MinException : public std::exception
+	{
+		public:
+			virtual const char* what(void) const throw();
+	};
 
 	private:
 	Span();
@@ -44,3 +59,8 @@ Span &operator=(const Span& other);
 
 };
 #endif
+
+// const char* BadExceptiom::what() throw()
+// {
+// 	return ¨Error¨;
+// }
