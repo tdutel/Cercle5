@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:19:35 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/09 14:48:18 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/09 15:46:09 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ void	Span::addNumber(int	n)
 	if (this->_tab.size() < this->_max)
 		this->_tab.push_back(n);
 	else
-	{
 		throw MaxException();
-	}
+
 	if (this->_tab.size() <= 10)
 		for	(size_t i = 0; i < this->_tab.size(); i++)
 			std::cout << YELLOW << "tab[" << i << "]" << RESET <<  " = " << BLUE << this->_tab[i] << RESET << "\t";
 	else
-		std::cout << YELLOW << "elements added successfully." << RESET << std::endl;
+		std::cout << YELLOW << "element added successfully." << RESET << std::endl;
 	std::cout << std::endl;
 }
 
@@ -66,18 +65,30 @@ void	Span::addNumber(std::vector<int>::iterator itr, size_t size)
 	std::vector<int>	v2(size, 0);
 	if (this->_tab.size() + size <= this->_max)
 		this->_tab.insert(itr, v2.begin(), v2.end());
+	else
+		throw MaxException();
+
+	if (this->_tab.size() <= 10)
+		for	(size_t i = 0; i < this->_tab.size(); i++)
+			std::cout << YELLOW << "tab[" << i << "]" << RESET <<  " = " << BLUE << this->_tab[i] << RESET << "\t";
+	else
+		std::cout << YELLOW << "size elements successfully added." << RESET << std::endl;
+	std::cout << std::endl;
 }
 
 void	Span::addNumber(std::vector<int>::iterator itr, std::vector<int> ve)
 {
 	if (this->_tab.size() + ve.size() <= this->_max)
-	{
 		this->_tab.insert(itr, ve.begin(), ve.end());
-	}
 	else
-	{
 		throw MaxException();
-	}
+
+	if (this->_tab.size() <= 10)
+		for	(size_t i = 0; i < this->_tab.size(); i++)
+			std::cout << YELLOW << "tab[" << i << "]" << RESET <<  " = " << BLUE << this->_tab[i] << RESET << "\t";
+	else
+		std::cout << YELLOW << "vector elements successfully added." << RESET << std::endl;
+	std::cout << std::endl;
 }
 
 int		Span::shortestSpan()
@@ -88,12 +99,14 @@ int		Span::shortestSpan()
 		}
 	Span	cpy(*this);
 	std::sort(cpy._tab.begin(), cpy._tab.end());
+	if(cpy._tab.size() < 3)
+		return (std::min(cpy._tab.at(1), cpy._tab.at(0)));
 	size_t i = 0;
-	int min = std::min(cpy._tab[i + 1] - cpy._tab[i], cpy._tab[i + 2] - cpy._tab[i + 1]);
+	int min = std::min((cpy._tab.at(1)) - (cpy._tab.at(0)), (cpy._tab.at(2)) - (cpy._tab.at(1)));
 	int result = min;
 	while (i + 2 < cpy._max)
 	{
-		min = std::min(cpy._tab[i + 1] - cpy._tab[i], cpy._tab[i + 2] - cpy._tab[i + 1]);
+		min = std::min((cpy._tab.at(i + 1)) - (cpy._tab.at(i)), (cpy._tab.at(i + 2)) - (cpy._tab.at(i + 1)));
 		result = std::min(result, min);
 		i++;
 	}
@@ -109,9 +122,8 @@ int		Span::longestSpan()
 	Span	cpy(*this);
 
 	std::sort(cpy._tab.begin(), cpy._tab.end());
-	int result = cpy._tab[cpy._max - 1] - cpy._tab[0];
+	int result = *(cpy._tab.end() - 1) - *cpy._tab.begin();
 	return (result);
-
 }
 
 std::vector<int>::iterator	Span::getIt(void)
@@ -124,6 +136,10 @@ std::vector<int>::iterator	Span::getIte(void)
 	return (this->_tab.end());
 };
 
+size_t	Span::getSize(void)
+{
+	return (this->_tab.size());
+};
 
 const char*	Span::MinException::what(void) const throw()
 {

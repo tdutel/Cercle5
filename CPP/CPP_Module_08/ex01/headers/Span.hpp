@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:15:27 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/09 14:39:35 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/09 15:04:24 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class Span
 
 	std::vector<int>::iterator	getIt(void);
 	std::vector<int>::iterator	getIte(void);
+	size_t		getSize();
 
 // operator //
 Span &operator=(const Span& other);
