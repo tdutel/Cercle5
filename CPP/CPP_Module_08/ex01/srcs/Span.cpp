@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:19:35 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/09 15:46:09 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/13 12:45:03 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int		Span::shortestSpan()
 	size_t i = 0;
 	int min = std::min((cpy._tab.at(1)) - (cpy._tab.at(0)), (cpy._tab.at(2)) - (cpy._tab.at(1)));
 	int result = min;
-	while (i + 2 < cpy._max)
+	while (i + 2 < cpy._max && i + 2 < cpy._tab.size())
 	{
 		min = std::min((cpy._tab.at(i + 1)) - (cpy._tab.at(i)), (cpy._tab.at(i + 2)) - (cpy._tab.at(i + 1)));
 		result = std::min(result, min);
