@@ -25,11 +25,29 @@ int main()
 
 	++it;
 	--it;
-
+	int i = 0;
 	while (it != ite)
 	{
-		std::cout << *it << std::endl;
+		std::cout << RED << "stack[" << i++ << "] = " << RESET << *it << std::endl;
 		++it;
+	}
+	std::cout << RED << "stack" << YELLOW <<  ".size() = " << RESET << mstack.size() << std::endl;
+	std::cout << std::endl;
+
+	MutantStack<int> mstack2(mstack);
+
+	MutantStack<int>::reverse_iterator rit = mstack2.rbegin();
+	MutantStack<int>::reverse_iterator rite = mstack2.rend();
+
+	std::cout << BLUE << "stack2" << YELLOW << ".size() = " << RESET << mstack2.size() << std::endl;
+
+	++rit;
+	--rit;
+
+	while (rit != rite)
+	{
+		std::cout << BLUE << "stack2[" << --i << "] = " << RESET << *rit << std::endl;
+		++rit;
 	}
 	std::stack<int> s(mstack);
 	return 0;
