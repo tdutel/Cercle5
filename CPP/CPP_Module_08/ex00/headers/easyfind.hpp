@@ -6,13 +6,14 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 11:31:14 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/14 13:42:07 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/15 10:01:35 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
+# include "Color.hpp"
 # include <iostream>
 # include <algorithm>
 
@@ -21,7 +22,7 @@ class notFindException : public std::exception
 		public:
 			virtual const char* what(void) const throw()
 			{
-				return ("not found the occurence.");
+				return ("Not found the occurence.");
 			}
 	};
 

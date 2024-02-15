@@ -6,12 +6,12 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/02/01 15:34:51 by tdutel           ###   ########.fr        #
+#    Updated: 2024/02/15 09:54:18 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = easyfind
-HEADER = headers/easyfind.hpp
+HEADER = headers/easyfind.hpp	headers/Color.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 SRC =	main.cpp
