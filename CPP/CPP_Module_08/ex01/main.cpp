@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:26:16 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/09 15:16:51 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/15 10:14:45 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << GREY << e.what() << '\n';
+		std::cerr << GREY << e.what() << RESET << '\n';
 	}
 
 	try
@@ -61,15 +61,18 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << GREY << e.what() << '\n';
+		std::cerr << GREY << e.what() << RESET << '\n';
 	}
 
 	try
 	{
 		std::cout << std::endl << std::endl << PURPLE << "TEST 3 : Span(10) + vector." << RESET << std::endl << std::endl;
 		Span sp = Span(10);
+		std::cout << "adding 3, then 5 to tab." << std::endl << std::endl;
 		sp.addNumber(3);
 		sp.addNumber(5);
+
+		std::cout << GREEN << std::endl << "current sp size : " << sp.getSize() << RESET << std::endl;
 	
 		std::cout << std::endl << "adding a vector {1, 1, 1} in front of first element of tab ." << std::endl << std::endl;
 		std::vector<int>	vec(3, 1);
@@ -85,7 +88,22 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << GREY << e.what() << '\n';
+		std::cerr << GREY << e.what() << RESET << '\n';
+	}
+
+		try
+	{
+		std::cout << std::endl << std::endl << PURPLE << "TEST 4 : Span(1) + shortest/longest" << RESET << std::endl << std::endl;
+		Span sp = Span(1);
+		std::cout << "adding 3 to tab." << std::endl << std::endl;
+		sp.addNumber(3);
+
+		std::cout << std::endl << "shortestSpan : " << BLUE << sp.shortestSpan() << RESET << std::endl;
+		std::cout << "longestSpan : " << RED << sp.longestSpan() << RESET << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << GREY << e.what() << RESET << '\n';
 	}
 return 0;
 }
