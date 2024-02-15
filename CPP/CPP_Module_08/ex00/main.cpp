@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:32:29 by tdutel            #+#    #+#             */
-/*   Updated: 2024/02/15 10:00:44 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/02/15 10:05:23 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error : " << e.what() << "\n\n\n";
+		std::cout << GREY << "Error : " << e.what() << RESET << "\n\n\n";
 	}
 
 	try
@@ -73,7 +73,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error : " << e.what() << "\n\n\n";
+		std::cout << GREY << "Error : " << e.what() << RESET << "\n\n\n";
 	}
 
 	try
@@ -102,7 +102,7 @@ int	main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error : " << e.what() << "\n\n";
+		std::cout << GREY << "Error : " << e.what() << RESET << "\n\n";
 	}
 	return (0);
 }
