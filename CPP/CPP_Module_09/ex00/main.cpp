@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 11:56:03 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/07 14:10:10 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/07 14:18:48 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,13 @@ std::map<std::string,std::string> get_input(const char *in)
 			elem = file.substr(pos, '\n');
 		else
 			elem = "";
-		std::map<std::string, std::string>::iterator it = data.find(file.substr(0, file.find(' ')));
-		if (it == data.end())
-			data[file.substr(0, file.find(' '))] = elem;
-		else
-			data[file.substr(0, file.find(' ') + 1)] = elem;
+		std::string index = min(file.substr(0, file.find(' ')),file.substr(0, file.find('|')));
+		// std::map<std::string, std::string>::iterator it = data.find(index);
+		while (data.find(index) != data.end())
+		{
+			index.append(" ");
+		}
+		data[index] = elem;
 		file = file.substr(file.find('\n') + 1, file.find('\0'));
 	}
 	dtfile.close();
