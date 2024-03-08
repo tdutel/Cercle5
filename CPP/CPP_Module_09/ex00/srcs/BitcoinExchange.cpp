@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:45 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/08 14:51:33 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/08 15:11:36 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	BitcoinExchange::parseData(std::string file)
 	if (std::atol(value.c_str()) < 0)
 		return (std::cout << "Error: not a positive number."<< std::endl, -1);
 
-	if (std::atol(value.c_str()) > 2147483647)
+	if (std::atol(value.c_str()) > 1000)
 		return (std::cout << "Error: too large a number."<< std::endl, -1);
 	return (0);
 }
