@@ -6,13 +6,13 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:45 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/08 14:44:13 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/08 14:51:33 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(std::string input)	: _input(input)
+BitcoinExchange::BitcoinExchange(std::string input) : _input(input)
 {
 	_data = initData();
 };
@@ -42,7 +42,7 @@ std::map<std::string,float> BitcoinExchange::initData()
 
 void	BitcoinExchange::controlMap()
 {
-	std::ifstream	infile("input.txt");
+	std::ifstream	infile(this->_input.c_str());
 	std::string file;
 	std::getline(infile, file, '\n');
 	

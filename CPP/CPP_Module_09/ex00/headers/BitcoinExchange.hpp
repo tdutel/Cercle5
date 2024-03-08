@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:25:20 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/08 14:39:52 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/08 14:54:23 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define BITCOINEXCHANGE_HPP
 
 # include <string>
-// # include <iomanip>
 # include <iostream>
 # include <fstream>
-# include <cstdlib>
+# include <algorithm>
 # include <map>
 
 class BitcoinExchange
