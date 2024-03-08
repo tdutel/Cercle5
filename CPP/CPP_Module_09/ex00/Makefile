@@ -6,15 +6,15 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/03/07 13:38:34 by tdutel           ###   ########.fr        #
+#    Updated: 2024/03/08 14:23:26 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = btc
-HEADER = #headers/BitcoinExchange.hpp	headers/Color.hpp
+HEADER = headers/BitcoinExchange.hpp	headers/Color.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-SRC =	main.cpp	#srcs/BitcoinExchange.cpp
+SRC =	main.cpp	srcs/BitcoinExchange.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
