@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:58:52 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/11 12:43:17 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/11 13:33:07 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 # include <iostream>
 # include <stack>
-
 # include <string>
-# include <algorithm>
-
 
 class RPN
 {
@@ -29,10 +26,8 @@ private:
 public:
 	RPN(std::string str);
 	~RPN();
-	// void	fillStack();
-	int	validChar(std::string str);
-	int	validExpress(std::string str);
-	void	prints();
+	void	resolve();
+	int	validExpression(std::string str);
 };
 
 
