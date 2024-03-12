@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:53:57 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/12 12:03:17 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/12 13:27:57 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ PmergeMe::~PmergeMe()
 {
 }
 
-int	PmergeMe::parseVect(char **argv)
+int	PmergeMe::parse(char **argv)
 {
 	for (size_t i = 1; argv[i]; i++)
 	{
@@ -35,9 +35,9 @@ int	PmergeMe::parseVect(char **argv)
 
 void	PmergeMe::mergeMe(int argc, char**argv)
 {
-	clock_t start, end;
+	clock_t start, start2, end, end2;
 
-	if (parseVect(argv) == -1)
+	if (parse(argv) == -1)
 		{
 			std::cout << "Error." << std::endl;
 			return ;
@@ -48,34 +48,45 @@ void	PmergeMe::mergeMe(int argc, char**argv)
 	}
 	std::cout << "Before: ";
 	for (std::vector<int>::iterator it = _vect.begin(); it < _vect.end(); it++)
-	{
 		std::cout << *it.base() << " ";
-	}
 	std::cout << std::endl;
-	
+
+//	Container Vector : //	
+
 	start = clock();
-	mergeSort(_vect);
+	mergeSortV(_vect);
 	end = clock();
+
 
 	std::cout << "After:  ";
 	for (std::vector<int>::iterator it = _vect.begin(); it < _vect.end(); it++)
-	{
 		std::cout << *it.base() << " ";
-	}
 	std::cout << std::endl;
 
 	double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << std::fixed << time_taken << std::setprecision(10) << " us" << std::endl;
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << std::fixed << std::setprecision(7) << time_taken << " sec" << std::endl;
+
+//	Container Deque : //
+
+	start2 = clock();
+	mergeSortD(_deque);
+	end2 = clock();
+
+	double time_taken2 = double(end2 - start2) / double(CLOCKS_PER_SEC);
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque  : " << std::fixed << std::setprecision(7) << time_taken2 << " sec" << std::endl;
+
+
+
 }
 
-void	PmergeMe::mergeSort(std::vector<int> &vect)		//TODO:implementer pour le containeur et faire une fonction pour chaque container instead of generique fonction
+void	PmergeMe::mergeSortV(std::vector<int> &vect)
 {
 	int	size = vect.size();
 	if (size <= 1)
 		return;
 	int	middle = size / 2;
-	std::vector<int> leftV; // = new int[middle]
-	std::vector<int> rightV; //= new int[lengh - middle];
+	std::vector<int> leftV;
+	std::vector<int> rightV;
 
 	int	i = 0;
 	int	j = 0;
@@ -89,12 +100,12 @@ void	PmergeMe::mergeSort(std::vector<int> &vect)		//TODO:implementer pour le con
 			j++;
 		}
 	}
-	mergeSort(leftV);
-	mergeSort(rightV);
-	merge(leftV, rightV, vect);
+	mergeSortV(leftV);
+	mergeSortV(rightV);
+	mergeV(leftV, rightV, vect);
 }
 
-void	PmergeMe::merge(std::vector<int> &leftV, std::vector<int> &rightV, std::vector<int> &vect)
+void	PmergeMe::mergeV(std::vector<int> &leftV, std::vector<int> &rightV, std::vector<int> &vect)
 {
 	int leftSize = vect.size() / 2;
 	int rightSize = vect.size() - leftSize;
@@ -131,5 +142,76 @@ void	PmergeMe::merge(std::vector<int> &leftV, std::vector<int> &rightV, std::vec
 	for (size_t i = 0; i < newV.size(); i++)
 	{
 		vect.push_back(newV.at(i));
+	}
+}
+
+
+
+//	container Deque //
+
+
+void	PmergeMe::mergeSortD(std::deque<int> &deque)
+{
+	int	size = deque.size();
+	if (size <= 1)
+		return;
+	int	middle = size / 2;
+	std::deque<int> leftD;
+	std::deque<int> rightD;
+
+	int	i = 0;
+	int	j = 0;
+	for(; i < size; i++)
+	{
+		if (i < middle)
+			leftD.push_back(deque[i]);
+		else
+		{
+			rightD.push_back(deque[i]);
+			j++;
+		}
+	}
+	mergeSortD(leftD);
+	mergeSortD(rightD);
+	mergeD(leftD, rightD, deque);
+}
+
+void	PmergeMe::mergeD(std::deque<int> &leftD, std::deque<int> &rightD, std::deque<int> &deque)
+{
+	int leftSize = deque.size() / 2;
+	int rightSize = deque.size() - leftSize;
+	int i = 0, l = 0, r = 0;
+
+	std::deque<int> newV;
+	while(l < leftSize && r < rightSize)
+	{
+		if (leftD.at(l) < rightD.at(r))
+		{
+			newV.push_back(leftD[l]);
+			l++;
+		}
+		else
+		{
+			newV.push_back(rightD[r]);
+			r++;
+		}
+		i++;
+	}
+	while (l < leftSize)
+	{
+		newV.push_back(leftD[l]);
+		i++;
+		l++;
+	}
+	while (r < rightSize)
+	{
+		newV.push_back(rightD[r]);
+		i++;
+		r++;
+	}
+	deque.clear();
+	for (size_t i = 0; i < newV.size(); i++)
+	{
+		deque.push_back(newV.at(i));
 	}
 }
