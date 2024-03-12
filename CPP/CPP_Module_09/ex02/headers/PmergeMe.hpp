@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:52:57 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/12 13:10:52 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/12 14:17:33 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <deque>
 # include <string>
 # include <algorithm>
+# include <ctime>
 
 
 class PmergeMe

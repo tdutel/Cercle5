@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:53:57 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/12 13:27:57 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/12 14:24:09 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	PmergeMe::mergeMe(int argc, char**argv)
 	for (int i = 1; i < argc; i++)
 	{
 			_vect.push_back(std::atoi(argv[i]));
+			_deque.push_back(std::atoi(argv[i]));
 	}
 	std::cout << "Before: ";
 	for (std::vector<int>::iterator it = _vect.begin(); it < _vect.end(); it++)
