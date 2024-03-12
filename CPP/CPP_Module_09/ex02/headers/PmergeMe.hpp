@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:52:57 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/11 15:47:17 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/12 10:01:23 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,17 @@
 
 class PmergeMe
 {
-private:
-	std::vector<int>	_vect;
-public:
-	PmergeMe(int argc, char **argv);
-	~PmergeMe();
-	int	parseVect(char **argv);
+
+	private:
+		std::vector<int>	_vect;
+
+	public:
+		PmergeMe(int argc, char **argv);
+		~PmergeMe();
+		int	parseVect(char **argv);
+		void	mergeMe(void);
+		void	mergeSort(std::vector<int> vect);
+		void	merge(std::vector<int> leftV, std::vector<int> rightV, std::vector<int> vect);
 };
 
 
