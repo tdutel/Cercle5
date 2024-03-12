@@ -6,26 +6,14 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:53:57 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/12 10:01:14 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/12 12:03:17 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/PmergeMe.hpp"
 
-PmergeMe::PmergeMe(int argc, char**argv)
+PmergeMe::PmergeMe()
 {
-	if (parseVect(argv) == -1)
-		{
-			std::cout << "Error." << std::endl;
-			return ;
-		}
-	for (int i = 1; i < argc; i++)
-	{
-			_vect.insert(_vect.end(), std::atoi(argv[i]));
-	}
-
-	for (size_t i = 0; _vect[i]; i++)
-		std::cout << _vect[i] << "\t";
 }
 
 PmergeMe::~PmergeMe()
@@ -45,14 +33,42 @@ int	PmergeMe::parseVect(char **argv)
 	return (0);
 }
 
-void	PmergeMe::mergeMe(void)
+void	PmergeMe::mergeMe(int argc, char**argv)
 {
+	clock_t start, end;
+
+	if (parseVect(argv) == -1)
+		{
+			std::cout << "Error." << std::endl;
+			return ;
+		}
+	for (int i = 1; i < argc; i++)
+	{
+			_vect.push_back(std::atoi(argv[i]));
+	}
+	std::cout << "Before: ";
+	for (std::vector<int>::iterator it = _vect.begin(); it < _vect.end(); it++)
+	{
+		std::cout << *it.base() << " ";
+	}
+	std::cout << std::endl;
+	
+	start = clock();
 	mergeSort(_vect);
-	for (size_t i = 0; _vect[i]; i++)
-		std::cout << _vect[i] << ", ";
+	end = clock();
+
+	std::cout << "After:  ";
+	for (std::vector<int>::iterator it = _vect.begin(); it < _vect.end(); it++)
+	{
+		std::cout << *it.base() << " ";
+	}
+	std::cout << std::endl;
+
+	double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << std::fixed << time_taken << std::setprecision(10) << " us" << std::endl;
 }
 
-void	PmergeMe::mergeSort(std::vector<int> vect)		//TODO:implementer pour le containeur et faire une fonction pour chaque container instead of generique fonction
+void	PmergeMe::mergeSort(std::vector<int> &vect)		//TODO:implementer pour le containeur et faire une fonction pour chaque container instead of generique fonction
 {
 	int	size = vect.size();
 	if (size <= 1)
@@ -78,37 +94,42 @@ void	PmergeMe::mergeSort(std::vector<int> vect)		//TODO:implementer pour le cont
 	merge(leftV, rightV, vect);
 }
 
-void	PmergeMe::merge(std::vector<int> leftV, std::vector<int> rightV, std::vector<int> vect)
+void	PmergeMe::merge(std::vector<int> &leftV, std::vector<int> &rightV, std::vector<int> &vect)
 {
 	int leftSize = vect.size() / 2;
 	int rightSize = vect.size() - leftSize;
 	int i = 0, l = 0, r = 0;
 
+	std::vector<int> newV;
 	while(l < leftSize && r < rightSize)
 	{
-		if (leftV[l] < rightV[r])
+		if (leftV.at(l) < rightV.at(r))
 		{
-			vect[i] = leftV[r];
-			i++;
+			newV.push_back(leftV[l]);
 			l++;
 		}
 		else
 		{
-			vect[i] = rightV[r];
-			i++;
+			newV.push_back(rightV[r]);
 			r++;
 		}
+		i++;
 	}
 	while (l < leftSize)
 	{
-		vect[i] = leftV[l];
+		newV.push_back(leftV[l]);
 		i++;
 		l++;
 	}
 	while (r < rightSize)
 	{
-		vect[i] = rightV[r];
+		newV.push_back(rightV[r]);
 		i++;
 		r++;
+	}
+	vect.clear();
+	for (size_t i = 0; i < newV.size(); i++)
+	{
+		vect.push_back(newV.at(i));
 	}
 }

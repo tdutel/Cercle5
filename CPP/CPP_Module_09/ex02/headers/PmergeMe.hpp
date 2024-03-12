@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:52:57 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/12 10:01:23 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/12 12:03:32 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <vector>
 # include <string>
 # include <algorithm>
+
 
 class PmergeMe
 {
@@ -25,12 +27,12 @@ class PmergeMe
 		std::vector<int>	_vect;
 
 	public:
-		PmergeMe(int argc, char **argv);
+		PmergeMe();
 		~PmergeMe();
 		int	parseVect(char **argv);
-		void	mergeMe(void);
-		void	mergeSort(std::vector<int> vect);
-		void	merge(std::vector<int> leftV, std::vector<int> rightV, std::vector<int> vect);
+		void	mergeMe(int argc, char **argv);
+		void	mergeSort(std::vector<int> &vect);
+		void	merge(std::vector<int> &leftV, std::vector<int> &rightV, std::vector<int> &vect);
 };
 
 
