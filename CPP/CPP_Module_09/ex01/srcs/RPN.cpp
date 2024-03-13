@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:26:26 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/11 13:32:44 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/13 11:22:06 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	RPN::resolve()
 {
 	if (validExpression(_str) == -1)
 	{
-		std::cout << "Error." << std::endl;
+		std::cout << "Error" << std::endl;
 		return;
 	}
 	size_t	i = 0;
@@ -35,7 +35,7 @@ void	RPN::resolve()
 		{
 			if (_str[i]== '\0')
 			{
-				std::cout << "Error." << std::endl;
+				std::cout << "Error" << std::endl;
 				return ;
 			}
 			if (isdigit(_str[i]))
@@ -73,6 +73,10 @@ void	RPN::resolve()
 
 int	RPN::validExpression(std::string str)
 {
+	if (std::string::npos == str.find_first_of("0123456789"))
+		return (-1);
+	if (!isdigit(str[0]) || (isdigit(str[0]) && !isdigit(str[2])))
+		return (-1);
 	for (size_t i = 0; str[i] ; i++)
 	{
 		if ((str[i] < '0' && (str[i] != ' ' && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/')) || (str[i] > '9'))
