@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:45 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/08 15:11:36 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:05:13 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ std::map<std::string,float> BitcoinExchange::initData()
 	std::map<std::string,float> data;
 
 	dtfile.open("srcs/data.csv");
-
+	if (!dtfile.is_open())
+	{
+		std::cout << "Error: unknown file : data.csv" << std::endl;
+		return;
+	}
 	while (std::getline(dtfile, file, '\n'))
 	{
 		float elem;

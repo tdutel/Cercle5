@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:26:26 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/13 11:22:06 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:03:14 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ void	RPN::resolve()
 			break;
 
 		case 47:
+		if (b == 0)
+		{
+			std::cout << "Error" << std::endl;
+			return;
+		}
 			result = a / b;
 			break;
 		}
