@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:26:26 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/13 15:03:14 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:20:18 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,19 @@ int	RPN::validExpression(std::string str)
 		if (str[i] != ' ' && (str[i + 1] != ' ' && str[i + 1] != '\0'))
 			return (-1);
 	}
+
+	int	d = 0;
+	int	o = 0;
+
+	for (size_t i = 0; str[i] ; i++)
+	{
+		if (isdigit(str[i]))
+			d++;
+		else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/')
+			o++;
+	}
+	if (d <= o)
+		return (-1);
+
 	return (0);
 }
