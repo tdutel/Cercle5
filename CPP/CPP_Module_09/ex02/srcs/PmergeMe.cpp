@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:53:57 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/12 14:24:09 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:12:05 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	PmergeMe::parse(char **argv)
 			if (!isdigit(argv[i][j]))
 				return (-1);
 		}
+		if (std::atol(argv[i]) > 2147483647)
+				return (-1);
 	}
 	return (0);
 }
