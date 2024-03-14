@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:45 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/13 15:05:13 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:40:53 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ std::map<std::string,float> BitcoinExchange::initData()
 	if (!dtfile.is_open())
 	{
 		std::cout << "Error: unknown file : data.csv" << std::endl;
-		return;
+		data.clear();
+		return (data);
 	}
 	while (std::getline(dtfile, file, '\n'))
 	{
@@ -46,6 +47,8 @@ std::map<std::string,float> BitcoinExchange::initData()
 
 void	BitcoinExchange::controlMap()
 {
+	if (_data.empty())
+		return ;
 	std::ifstream	infile(this->_input.c_str());
 	std::string file;
 	std::getline(infile, file, '\n');
