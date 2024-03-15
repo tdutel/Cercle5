@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:26:26 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/13 15:20:18 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/15 15:17:22 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	RPN::resolve()
 		}
 		int	b = _stack.top() - 48;
 		_stack.pop();
+		if (_stack.size() < 1)
+		{
+			std::cerr << "Error." << std::endl;
+			return;
+		}
 		int	a = _stack.top() - 48;
 		_stack.pop();
 		int result;
