@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
     }
 
     // Ajout du socket d'écoute à l'instance epoll
-    event.events = EPOLLIN; // Surveillage des événements de lecture
+    event.events = EPOLLIN | EPOLLRDHUP; // Surveillage des événements de lecture
     event.data.fd = server_fd;
     if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, server_fd, &event) == -1) {
         perror("epoll_ctl");
@@ -69,35 +69,49 @@ int main(int argc, char **argv) {
         }
 
         for (int n = 0; n < nfds; ++n) {
-            if (events[n].events & EPOLLIN) {
-                if (events[n].data.fd == server_fd) {
+            // std::cout << "events = " << events[n].events << "\t EPOLLIN = " << EPOLLIN << std::endl;
+            if (events[n].events & EPOLLIN)
+            {
+                if (events[n].data.fd == server_fd) 
+                {
                     // Nouvelle connexion entrée
                     conn_fd = accept(server_fd, (struct sockaddr *)&server_addr, &addr_len);
-                    if (conn_fd == -1) {
+                    if (conn_fd == -1) 
+                    {
                         perror("accept");
                         continue;
                     }
                     std::cout << "Nouvelle connexion de " << inet_ntoa(server_addr.sin_addr) << std::endl;
 
                     // Ajout du nouveau descripteur de fichier à l'instance epoll
-                    event.events = EPOLLIN;
+                    event.events = EPOLLIN | EPOLLRDHUP;
                     event.data.fd = conn_fd;
-                    if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, conn_fd, &event) == -1) {
+                    if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, conn_fd, &event) == -1) 
+                    {
                         perror("epoll_ctl");
                         exit(EXIT_FAILURE);
                     }
-                } else {
+                } 
+                else
+                {
                     // Traitement des données entrantes sur une connexion existante
                     char buffer[1024];
                     ssize_t bytes_read = read(events[n].data.fd, buffer, sizeof(buffer) - 1);
-                    if (bytes_read > 0) {
+                    if (bytes_read > 0) 
+                    {
                         buffer[bytes_read] = '\0'; // Terminer la chaîne
                         std::cout << "Données reçues : " << buffer << std::endl;
                     }
                 }
             }
-            // else //|| events[n].events & EPOLLOUT
-            //     std::cout << "epoll out" << std::endl;
+            if (events[n].events & EPOLLRDHUP) 
+                {
+                    // Le client s'est déconnecté
+                    std::cout << "Le client s'est déconnecté." << std::endl;
+                    close(events[n].data.fd); // Fermer le descripteur de fichier du client déconnecté
+                    // Supprimer le descripteur de fichier de l'instance epoll si nécessaire
+                    epoll_ctl(epoll_fd, EPOLL_CTL_DEL, events[n].data.fd, &event);
+            }
         }
     }
     close(server_fd);
