@@ -1,14 +1,5 @@
 #define MAX_EVENTS 10
-#include "irc.hpp"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <sys/epoll.h>
+#include "incs/irc.hpp"
 
 int main(int argc, char **argv) {
 	if (argc != 2)

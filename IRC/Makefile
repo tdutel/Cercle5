@@ -6,15 +6,15 @@
 #    By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 13:52:16 by tdutel            #+#    #+#              #
-#    Updated: 2024/03/20 11:43:12 by tdutel           ###   ########.fr        #
+#    Updated: 2024/03/25 14:21:03 by tdutel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ircserv
-HEADER = irc.hpp
+HEADER = incs/irc.hpp	incs/server.hpp	incs/client.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -g3
-SRC =	main.cpp
+SRC =	main.cpp	srcs/server.cpp	srcs/client.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
