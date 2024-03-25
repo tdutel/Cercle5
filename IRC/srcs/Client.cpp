@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.hpp                                         :+:      :+:    :+:   */
+/*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 14:09:40 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/25 14:09:59 by tdutel           ###   ########.fr       */
+/*   Created: 2024/03/25 14:27:16 by tdutel            #+#    #+#             */
+/*   Updated: 2024/03/25 15:32:18 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_HPP
-# define CLIENT_HPP
+#include "../incs/Client.hpp"
 
-class client
+Client::Client(int	fd) : _fd(fd)
 {
-private:
-	/* data */
-public:
-	client(/* args */);
-	~client();
-};
+}
 
-#endif
+Client::~Client()
+{
+}
+
+int	Client::getFd()
+{
+	return (_fd);
+}

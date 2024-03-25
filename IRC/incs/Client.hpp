@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.cpp                                         :+:      :+:    :+:   */
+/*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 14:10:13 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/25 14:21:44 by tdutel           ###   ########.fr       */
+/*   Created: 2024/03/25 14:27:21 by tdutel            #+#    #+#             */
+/*   Updated: 2024/03/25 15:32:22 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/client.hpp"
+#ifndef CLIENT_HPP
+# define CLIENT_HPP
 
-client::client(/* args */)
-{
-}
+# include "Irc.hpp"
 
-client::~client()
+class Client
 {
-}
+	private:
+		int	_fd;
+
+	public:
+		Client(int	connFd);
+		~Client();
+	
+		int	getFd();
+};
+
+#endif
