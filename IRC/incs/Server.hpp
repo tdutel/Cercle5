@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:09:37 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/25 15:43:56 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/26 13:05:48 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ class Server
 		void	addSocketToEpoll();
 		void	epollWait();
 		void	eventLoop(int n);
+		void	epollinEvent(int n);
+		void	epollrdhupEvent(int n);
+		void	epolloutEvent(int n);
 		void	closeFd();
 };
 

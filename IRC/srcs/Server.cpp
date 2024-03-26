@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:10:07 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/25 15:42:54 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/26 15:25:33 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	Server::listenConnectIn()
 		// Ajout du socket d'écoute à l'instance epoll
 void	Server::addSocketToEpoll()
 {
-	_event.events = EPOLLIN | EPOLLRDHUP; // Surveillage des événements de lecture
+	_event.events = EPOLLIN | EPOLLRDHUP | EPOLLOUT; // Surveillage des événements de lecture
 	_event.data.fd = _server_fd;
 	if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, _server_fd, &_event) == -1) {
 		perror("epoll_ctl");
@@ -99,51 +99,71 @@ void	Server::epollWait()
 void	Server::eventLoop(int	n)
 {
 	if (_events[n].events & EPOLLIN)
-			{
-				if (_events[n].data.fd == _server_fd) 
-				{
-					// Nouvelle connexion entrée
-					
-					int connFd = accept(_server_fd, (struct sockaddr *)&_server_addr, &_addrLen);
-					Client *acceptedClient = new Client(connFd);
-					
-					_mapClient[acceptedClient->getFd()] = acceptedClient;
-					if (connFd == -1) 
-					{
-						perror("accept");
-						// continue;
-					}
-					std::cout << "Nouvelle connexion de " << inet_ntoa(_server_addr.sin_addr) << std::endl;
-					// Ajout du nouveau descripteur de fichier à l'instance epoll
-					_event.events = EPOLLIN | EPOLLRDHUP;
-					_event.data.fd = connFd;
-					if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, connFd, &_event) == -1) 
-					{
-						perror("epoll_ctl");
-						exit(EXIT_FAILURE);
-					}
-				} 
-				else
-				{
-					// Traitement des données entrantes sur une connexion existante
-					char buffer[1024];
-					ssize_t bytes_read = read(_events[n].data.fd, buffer, sizeof(buffer) - 1);
-					if (bytes_read > 0) 
-					{
-						buffer[bytes_read] = '\0'; // Terminer la chaîne
-						std::cout << "Données reçues : " << buffer <<std::endl ;
-					}
-					
-				}
-			}
-			if (_events[n].events & EPOLLRDHUP) 
-				{
-					// Le client s'est déconnecté
-					std::cout << "Le client s'est déconnecté." << std::endl;
-					close(_events[n].data.fd); // Fermer le descripteur de fichier du client déconnecté
-					// Supprimer le descripteur de fichier de l'instance epoll si nécessaire
-					epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, _events[n].data.fd, &_event);
-			}
+		epollinEvent(n);
+	if (_events[n].events & EPOLLRDHUP) 
+		epollrdhupEvent(n);
+	if (_events[n].events & EPOLLOUT) 
+		epolloutEvent(n);
+}
+
+void	Server::epollinEvent(int n)
+{
+	if (_events[n].data.fd == _server_fd) 
+	{
+		// Nouvelle connexion entrée
+		
+		int connFd = accept(_server_fd, (struct sockaddr *)&_server_addr, &_addrLen);
+		if (connFd == -1)
+		{
+			perror("accept");
+			// continue;
+		}
+		Client *acceptedClient = new Client(connFd);
+		
+		_mapClient[acceptedClient->getFd()] = acceptedClient;
+		std::cout << "Nouvelle connexion de " << inet_ntoa(_server_addr.sin_addr) << std::endl;
+		// Ajout du nouveau descripteur Client de fichier à l'instance epoll
+		_mapClient[acceptedClient->getFd()]->updateStatus(_epoll_fd);
+	} 
+	else
+	{
+		// Traitement des données entrantes sur une connexion existante
+		char buffer[1024];
+		ssize_t bytes_read = recv(_events[n].data.fd, buffer, sizeof(buffer) - 1, 0);
+		// ssize_t bytes_read = read(_events[n].data.fd, buffer, sizeof(buffer) - 1);
+		if (bytes_read > 0) 
+		{
+			buffer[bytes_read] = '\0'; // Terminer la chaîne
+			_mapClient[_events[n].data.fd]->setMailbox(buffer);	//ajout de l'input dans la mailbox
+			
+			std::cout << "Client "<< _events[n].data.fd <<" : " << buffer <<std::endl ;
+		}
+
+	}
+}
+
+void	Server::epollrdhupEvent(int n)
+{
+	// Le client s'est déconnecté
+	std::cout << "Le client " <<  _events[n].data.fd << " s'est déconnecté." << std::endl;
+	close(_events[n].data.fd); // Fermer le descripteur de fichier du client déconnecté
+	// Supprimer le descripteur de fichier de l'instance epoll si nécessaire
+	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, _events[n].data.fd, &_event);
+	_mapClient[_events[n].data.fd]->updateStatus(_epoll_fd);
+}
+
+void	Server::epolloutEvent(int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		int bytesSent = send(_events[n].data.fd, _mapClient[_events[n].data.fd]->getMailbox(n).c_str(), sizeof(_mapClient[_events[n].data.fd]->getMailbox(n)), 0);
+		if (bytesSent == -1)
+		{
+			perror("send");
+		}
+	}
+	_mapClient[_events[n].data.fd]->clearMailbox();
+	// int bytesSent = send(_events[n].data.fd, _mapClient[_events[n].data.fd]->getMailbox(n).c_str(), sizeof(_mapClient[_events[n].data.fd]->getMailbox(n)), 0);
 }
 
 void	Server::closeFd()
@@ -151,3 +171,8 @@ void	Server::closeFd()
 	close(_server_fd);
 	close(_epoll_fd);
 }
+
+
+/*
+stock les input quand les clients parlent, les mettres dans la mailbox de chacun quand EPOLLOUT.
+*/

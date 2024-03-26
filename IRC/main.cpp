@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:27:58 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/25 15:36:49 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/26 14:48:25 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 #include "incs/Server.hpp"
 #include "incs/Client.hpp"
 
-int main(int argc, char **argv) {
-	if (argc != 2)
+int main(int argc, char **argv)
+{
+	try
 	{
-		std::cout << "bad numbers of arguments." << std::endl;
-		return (1);
+		if (argc != 2)
+		{
+			std::cout << "bad numbers of arguments." << std::endl;
+			return (1);
+		}
+	
+		Server	Serv(argv[1]);
+	
+		while (1)
+			Serv.epollWait();
+		Serv.closeFd();
+		return (0);
 	}
-
-	Server	Serv(argv[1]);
-
-	while (1)
-		Serv.epollWait();
-	Serv.closeFd();
-	return (0);
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
 	// uint64_t port = std::strtol(argv[1], NULL, 10);
 	// int epoll_fd;
