@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:10:07 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/27 12:06:55 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/27 15:47:59 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	Server::epollCreation()
 {
 	_epoll_fd = epoll_create1(0);
 	if (_epoll_fd == -1) {
-		perror("epoll_create1");
-		exit(EXIT_FAILURE);
+		throw std::runtime_error("Error while calling epoll_create1().");
 	}
 }
 
@@ -41,9 +40,11 @@ void	Server::socketCreation()
 {
 	_server_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (_server_fd == -1) {
-		perror("socket");
-		exit(EXIT_FAILURE);
+		throw std::runtime_error("Error while creating socket.");
 	}
+	int option = 1;
+	setsockopt(_server_fd, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
+
 }
 
 		// Configuration de l'adresse du serveur
@@ -59,8 +60,7 @@ void	Server::addrConfig()
 void	Server::linkSocket()
 {
 	if (bind(_server_fd, (struct sockaddr *)&_server_addr, _addrLen) == -1) {
-		perror("bind");
-		exit(EXIT_FAILURE);
+		throw std::runtime_error("Error while binding socket.");
 	}
 }
 
@@ -69,8 +69,7 @@ void	Server::linkSocket()
 void	Server::listenConnectIn()
 {
 	if (listen(_server_fd, SOMAXCONN) == -1) {
-		perror("listen");
-		exit(EXIT_FAILURE);
+		throw std::runtime_error("Error while listening.");
 	}
 }
 
@@ -80,7 +79,7 @@ void	Server::addSocketToEpoll()
 	_event.events = EPOLLIN | EPOLLRDHUP | EPOLLOUT; // Surveillage des événements de lecture
 	_event.data.fd = _server_fd;
 	if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, _server_fd, &_event) == -1) {
-		perror("epoll_ctl");
+		throw std::runtime_error("Error while calling epoll_ctl().");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -89,7 +88,7 @@ void	Server::epollWait()
 {
 	_nfds = epoll_wait(_epoll_fd, _events, MAX_EVENTS, -1);
 		if (_nfds == -1) {
-			perror("epoll_wait");
+			throw std::runtime_error("Error while calling epoll_wait().");
 			exit(EXIT_FAILURE);
 		}
 	for (int n = 0; n < _nfds; ++n)
@@ -98,11 +97,11 @@ void	Server::epollWait()
 
 void	Server::eventLoop(int	n)
 {
-	if (_events[n].events & EPOLLIN)
-		epollinEvent(n);
-	if (_events[n].events & EPOLLRDHUP) 
+	if (_events[n].events & EPOLLRDHUP)
 		epollrdhupEvent(n);
-	if (_events[n].events & EPOLLOUT) 
+	else if (_events[n].events & EPOLLIN)
+		epollinEvent(n);
+	else if (_events[n].events & EPOLLOUT)
 		epolloutEvent(n);
 }
 
@@ -115,16 +114,24 @@ void	Server::epollinEvent(int n)
 		int connFd = accept(_server_fd, (struct sockaddr *)&_server_addr, &_addrLen);
 		if (connFd == -1)
 		{
-			perror("accept");
-			// continue;
+			throw std::runtime_error("Error while calling accept().");
 		}
 		Client *acceptedClient = new Client(connFd);
 		
 		_mapClient[acceptedClient->getFd()] = acceptedClient;
-		std::cout << "Nouvelle connexion de " << inet_ntoa(_server_addr.sin_addr) << std::endl;
 		// Ajout du nouveau descripteur Client de fichier à l'instance epoll
 		_mapClient[acceptedClient->getFd()]->updateStatus(_epoll_fd);
-	} 
+		
+		// std::cout << "Nouvelle connexion de " << inet_ntoa(_server_addr.sin_addr) << std::endl;
+		std::stringstream buff;
+		buff << "Nouvelle connexion de " << inet_ntoa(_server_addr.sin_addr) << "\r\n";
+		std::map<int, Client *>::iterator curClient = _mapClient.find(connFd);
+		for (std::map<int, Client *>::iterator it = _mapClient.begin(); it != _mapClient.end(); it++)
+		{
+			if (it != curClient)
+				it->second->setMailbox(buff.str(), _epoll_fd);	//ajout de l'input dans la mailbox
+		}
+	}
 	else
 	{
 		// Traitement des données entrantes sur une connexion existante
@@ -141,7 +148,7 @@ void	Server::epollinEvent(int n)
 					it->second->setMailbox(buffer, _epoll_fd);	//ajout de l'input dans la mailbox
 			}
 
-			std::cout << "Client "<< _events[n].data.fd <<" : " << buffer <<std::endl ;
+			// std::cout << "Client "<< _events[n].data.fd <<" : " << buffer <<std::endl ;
 		}
 
 	}
@@ -149,12 +156,23 @@ void	Server::epollinEvent(int n)
 
 void	Server::epollrdhupEvent(int n)
 {
+	std::stringstream buff;
+	buff << "Le client " << _events[n].data.fd << " s'est déconnecté.\r\n";
+	
+	std::map<int, Client *>::iterator curClient = _mapClient.find(_events[n].data.fd);
+	for (std::map<int, Client *>::iterator it = _mapClient.begin(); it != _mapClient.end(); it++)
+	{
+		if (it != curClient)
+			it->second->setMailbox(buff.str(), _epoll_fd);	//ajout de l'input dans la mailbox
+	}
+
 	// Le client s'est déconnecté
-	std::cout << "Le client " <<  _events[n].data.fd << " s'est déconnecté." << std::endl;
-	close(_events[n].data.fd); // Fermer le descripteur de fichier du client déconnecté
 	// Supprimer le descripteur de fichier de l'instance epoll si nécessaire
 	epoll_ctl(_epoll_fd, EPOLL_CTL_DEL, _events[n].data.fd, &_event);
-	_mapClient[_events[n].data.fd]->updateStatus(_epoll_fd);
+	close(_events[n].data.fd); // Fermer le descripteur de fichier du client déconnecté
+	delete(_mapClient[_events[n].data.fd]);
+	_mapClient.erase(_events[n].data.fd);
+	// _mapClient[_events[n].data.fd]->updateStatus(_epoll_fd);
 }
 
 void	Server::epolloutEvent(int n)
@@ -171,4 +189,7 @@ void	Server::closeFd()
 
 /*
 stock les input quand les clients parlent, les mettres dans la mailbox de chacun quand EPOLLOUT.
+//TODO: deconnecter le client si catch un throw dans le client ?
+
+
 */
