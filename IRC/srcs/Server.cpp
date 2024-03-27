@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:10:07 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/26 15:25:33 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/27 12:06:55 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,19 @@ void	Server::epollinEvent(int n)
 	else
 	{
 		// Traitement des données entrantes sur une connexion existante
-		char buffer[1024];
-		ssize_t bytes_read = recv(_events[n].data.fd, buffer, sizeof(buffer) - 1, 0);
+		char buffer[1024] = {0};
 		// ssize_t bytes_read = read(_events[n].data.fd, buffer, sizeof(buffer) - 1);
+		ssize_t bytes_read = recv(_events[n].data.fd, buffer, sizeof(buffer) - 1, 0);
 		if (bytes_read > 0) 
 		{
+			std::map<int, Client *>::iterator curClient = _mapClient.find(_events[n].data.fd);
 			buffer[bytes_read] = '\0'; // Terminer la chaîne
-			_mapClient[_events[n].data.fd]->setMailbox(buffer);	//ajout de l'input dans la mailbox
-			
+			for (std::map<int, Client *>::iterator it = _mapClient.begin(); it != _mapClient.end(); it++)
+			{
+				if (it != curClient)
+					it->second->setMailbox(buffer, _epoll_fd);	//ajout de l'input dans la mailbox
+			}
+
 			std::cout << "Client "<< _events[n].data.fd <<" : " << buffer <<std::endl ;
 		}
 
@@ -154,16 +159,7 @@ void	Server::epollrdhupEvent(int n)
 
 void	Server::epolloutEvent(int n)
 {
-	for (int i = 0; i < n; i++)
-	{
-		int bytesSent = send(_events[n].data.fd, _mapClient[_events[n].data.fd]->getMailbox(n).c_str(), sizeof(_mapClient[_events[n].data.fd]->getMailbox(n)), 0);
-		if (bytesSent == -1)
-		{
-			perror("send");
-		}
-	}
-	_mapClient[_events[n].data.fd]->clearMailbox();
-	// int bytesSent = send(_events[n].data.fd, _mapClient[_events[n].data.fd]->getMailbox(n).c_str(), sizeof(_mapClient[_events[n].data.fd]->getMailbox(n)), 0);
+	_mapClient[_events[n].data.fd]->receiveAll(_epoll_fd);
 }
 
 void	Server::closeFd()

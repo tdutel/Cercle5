@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:27:33 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/26 13:44:14 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/27 10:59:55 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include <map>
 # include <vector>
+# include <queue>
 
 // #include <cstring>
 // # include <sys/socket.h>

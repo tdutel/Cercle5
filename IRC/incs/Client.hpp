@@ -6,7 +6,7 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:27:21 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/26 14:32:08 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/27 12:06:06 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Client
 	private:
 		int	_fd;
 		bool	_isInEpoll;
-		std::vector<std::string>	_mailbox;
+		std::queue<std::string>	_mailbox;
 		struct epoll_event	_clientEvent;
 		
 
@@ -29,10 +29,9 @@ class Client
 		~Client();
 	
 		int			getFd();
-		void		setMailbox(std::string str);
-		std::string	getMailbox(int at);
-		void		clearMailbox();
+		void		setMailbox(std::string str, int epoll_fd);
 		void		updateStatus(int epoll_fd);
+		void		receiveAll(int epoll_fd);
 	
 	class err : public std::exception
 	{
