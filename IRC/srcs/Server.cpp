@@ -6,14 +6,18 @@
 /*   By: tdutel <tdutel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:10:07 by tdutel            #+#    #+#             */
-/*   Updated: 2024/03/27 15:47:59 by tdutel           ###   ########.fr       */
+/*   Updated: 2024/03/28 11:45:03 by tdutel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/Server.hpp"
 
-Server::Server(char *port) : _port(std::strtol(port, NULL, 10)), _addrLen(sizeof(_server_addr))
+Server::Server(char *port) : _addrLen(sizeof(_server_addr))
 {
+	std::string str(port);
+	if (std::string::npos != str.find_first_not_of("0123456789"))
+		throw	std::invalid_argument("Error : port is not valid.");
+	_port = std::strtol(port, NULL, 10);
 	epollCreation();
 	socketCreation();
 	addrConfig();
@@ -80,7 +84,6 @@ void	Server::addSocketToEpoll()
 	_event.data.fd = _server_fd;
 	if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, _server_fd, &_event) == -1) {
 		throw std::runtime_error("Error while calling epoll_ctl().");
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -89,7 +92,6 @@ void	Server::epollWait()
 	_nfds = epoll_wait(_epoll_fd, _events, MAX_EVENTS, -1);
 		if (_nfds == -1) {
 			throw std::runtime_error("Error while calling epoll_wait().");
-			exit(EXIT_FAILURE);
 		}
 	for (int n = 0; n < _nfds; ++n)
 		eventLoop(n);
@@ -97,12 +99,19 @@ void	Server::epollWait()
 
 void	Server::eventLoop(int	n)
 {
-	if (_events[n].events & EPOLLRDHUP)
-		epollrdhupEvent(n);
-	else if (_events[n].events & EPOLLIN)
-		epollinEvent(n);
-	else if (_events[n].events & EPOLLOUT)
-		epolloutEvent(n);
+	try
+	{
+		if (_events[n].events & EPOLLRDHUP)
+			epollrdhupEvent(n);
+		else if (_events[n].events & EPOLLIN)
+			epollinEvent(n);
+		else if (_events[n].events & EPOLLOUT)
+			epolloutEvent(n);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
 
 void	Server::epollinEvent(int n)
@@ -188,8 +197,5 @@ void	Server::closeFd()
 
 
 /*
-stock les input quand les clients parlent, les mettres dans la mailbox de chacun quand EPOLLOUT.
 //TODO: deconnecter le client si catch un throw dans le client ?
-
-
 */
